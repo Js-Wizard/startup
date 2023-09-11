@@ -1,1 +1,1 @@
-make happy
+spread joy
