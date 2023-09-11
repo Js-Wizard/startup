@@ -1,0 +1,33 @@
+# CS 260 notes
+These are notes from the CS 260 course that I will be able to use on exams.
+## GitHub
+Git is a version control software that has several crucial features for code development, such as:
+- Keeping track of changes to code, so that older versions can be restored if needed
+- Creating branches to experiment with new features without ruining anything
+- Transferring code and changes between devices to facilitate collaboration
+
+GitHub is a cloud-based service that enhances Git with additional features:
+- Storing repositories in a central and publicly accessible location
+- Advanced project management
+- Pull requests, which enable community collaboration
+- Fork someone else's repository to make your own version of it, to experiment or contribute
+- and more
+
+To create a Git repository with GitHub:
+1. Create repository in GitHub
+2. Copy clone URL
+3. Paste into command line after `git clone` when in the desired location
+
+To modify from development environment:
+1. `git pull` to get latest version from GitHub
+2. Modify files as desired
+3. `git add` on modified files to apply changes to
+4. `git commit -m "(message)"` to locally commit changes
+5. Repeat 2-4 for each major set of changes
+6. `git push` to apply to GitHub repository
+
+Other Git commands:
+- `git fetch` updates cache with information about the state of the GitHub repository
+- `git status` evaluates difference between GitHub cache and local files
+
+GitHub .md files use _markdown_, which is syntax to represent visual elements applied to the text.
