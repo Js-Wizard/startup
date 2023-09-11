@@ -1,1 +1,1 @@
-make happy
+make the world a happy place
