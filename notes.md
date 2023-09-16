@@ -1,6 +1,9 @@
 # CS 260 notes
+
 These are notes from the CS 260 course that I will be able to use on exams.
+
 ## GitHub
+
 Git is a version control software that has several crucial features for code development, such as:
 - Keeping track of changes to code, so that older versions can be restored if needed
 - Creating branches to experiment with new features without ruining anything
@@ -31,3 +34,32 @@ Other Git commands:
 - `git status` evaluates difference between GitHub cache and local files
 
 GitHub .md files use _markdown_, which is syntax to represent visual elements applied to the text.
+
+## Internet
+
+- Layers
+  - Application
+    - For example, HTTPS
+    - Application implementation
+  - Transport
+    - For example, TCP/UDP
+    - Creates stable connections and ensures data reaches its destination
+  - Internet
+    - IP
+    - Sends data between systems
+  - Link
+    - Fiber, hardware
+    - Phyically connects machines
+- Protocols
+  - HTTP
+    - Original web application protocol
+  - HTTPS
+    - HTTP but secure
+   
+## Tools
+- DNS
+  - Register IP address corresponding to the server
+- Gateway
+  - Redirects inputs to specific services
+  - Our tool: Caddy
+  - Services are linked to subdomains
