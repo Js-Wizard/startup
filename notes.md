@@ -82,6 +82,8 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
 - Gateway
   - Redirects inputs to specific services
   - Our tool: Caddy
+    - Serves static files directly
+    - Sends service requests to specific services
   - Services are linked to subdomains
 
 ## Startup
