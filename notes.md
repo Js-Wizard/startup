@@ -41,7 +41,6 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
   - Application
     - For example, HTTPS
     - Application implementation
-    - Use `curl` to make an HTTP request
   - Transport
     - For example, TCP/UDP
     - Creates stable connections and ensures data reaches its destination
@@ -53,11 +52,17 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
     - Fiber, hardware
     - Phyically connects machines
 - Protocols
-  - HTTP
-    - Original web application protocol
-  - HTTPS
-    - HTTP but secure
-   
+  - Application
+    - HTTP
+      - Original web application protocol
+      - Use `curl` to make an HTTP request
+    - HTTPS
+      - HTTP but secure
+      - Uses TLS
+      - `curl -v` will show TLS handshake
+    - TLS
+      - Wrapper for transport layer that encrypts sent data
+
 ## Tools
 - DNS
   - Register IP address corresponding to the server
@@ -85,8 +90,12 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
     - Serves static files directly
     - Sends service requests to specific services
   - Services are linked to subdomains
+- Web certificate issuer
+  - Generates and issues TLS certificates
+  - Let's Encrypt does this for free and is used by Caddy
 
 ## Startup
 - Access
   - Public IP: 54.164.246.196
-  - SSH: `ssh -i ~/CS260/demokey260.pem ubuntu@54.164.246.196`
+  - Domain: fimgame.click
+  - SSH: `ssh -i ~/CS260/demokey260.pem ubuntu@fimgame.click`
