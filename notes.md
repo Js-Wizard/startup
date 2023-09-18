@@ -75,6 +75,10 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
     - Third, fourth, etc
     - Managed by owner of a root domain
   - Root domain: secondary domain + TLD
+  - DNS records:
+    - A: ip address corresponding to a domain name
+    - NS: authoritative name servers that are listed in the registrar
+    - SOA: contact information for owner
 - Gateway
   - Redirects inputs to specific services
   - Our tool: Caddy
