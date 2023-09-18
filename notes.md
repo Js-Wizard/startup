@@ -37,16 +37,18 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
 
 ## Internet
 
-- Layers
+- Layers (TCP/IP model)
   - Application
     - For example, HTTPS
     - Application implementation
+    - Use `curl` to make an HTTP request
   - Transport
     - For example, TCP/UDP
     - Creates stable connections and ensures data reaches its destination
   - Internet
     - IP
     - Sends data between systems
+    - Use `traceroute` to get points along route to a certain address
   - Link
     - Fiber, hardware
     - Phyically connects machines
@@ -59,7 +61,26 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
 ## Tools
 - DNS
   - Register IP address corresponding to the server
+  - Commands
+    - Run `dig` to get ip address of domain from DNS
+    - Run `whois` to get informatino about the owner of a domain
+  - TLD: top level domain
+    - Rightmost
+    - e.g. com, edu
+    - Managed by ICANN
+  - Secondary domain
+    - Second-to-rightmost
+    - Managed by authoritative name servers
+  - Subdomains
+    - Third, fourth, etc
+    - Managed by owner of a root domain
+  - Root domain: secondary domain + TLD
 - Gateway
   - Redirects inputs to specific services
   - Our tool: Caddy
   - Services are linked to subdomains
+
+## Startup
+- Access
+  - Public IP: 54.164.246.196
+  - SSH: `ssh -i ~/CS260/demokey260.pem ubuntu@54.164.246.196`
