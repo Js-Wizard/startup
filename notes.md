@@ -93,6 +93,37 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
 - Web certificate issuer
   - Generates and issues TLS certificates
   - Let's Encrypt does this for free and is used by Caddy
+- HTML
+  - Hyper Text Markup Language
+  - Elements
+    - Structure:
+      - Open tag
+        - `<name att="val" ...>`
+        - May contain attributes
+      - Content
+        - Between opening and closing tag
+      - Closing tag
+        - `</name>`
+        - Can put in opening tag: `<name ... />`
+    - Types:
+      - `<!DOCTYPE html>`
+        - Notifies browser that this uses the new version of HTML
+      - `<title>`
+        - Sets name of browser tab
+      - `<div>`
+        - Generic page element, containing other elements
+      - `<img>`
+        - `alt`: Name of image, used if picture cannot be seen
+        - `src`: URL of source image
+  - Escape character: `&`
+  - DOM
+    - Document Object Model
+    - Tree structure representing relationship between elements
+    - Can represent HTML, CSS, Javascript
+    - Defined by code
+  - For further information
+    - MDN WebDocs
+    - w3schools
 
 ## Startup
 - Access
