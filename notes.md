@@ -64,69 +64,147 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
       - Wrapper for transport layer that encrypts sent data
 
 ## Tools
-- DNS
-  - Register IP address corresponding to the server
-  - Commands
-    - Run `dig` to get ip address of domain from DNS
-    - Run `whois` to get informatino about the owner of a domain
-  - TLD: top level domain
-    - Rightmost
-    - e.g. com, edu
-    - Managed by ICANN
-  - Secondary domain
-    - Second-to-rightmost
-    - Managed by authoritative name servers
-  - Subdomains
-    - Third, fourth, etc
-    - Managed by owner of a root domain
-  - Root domain: secondary domain + TLD
-  - DNS records:
-    - A: ip address corresponding to a domain name
-    - NS: authoritative name servers that are listed in the registrar
-    - SOA: contact information for owner
-- Gateway
-  - Redirects inputs to specific services
-  - Our tool: Caddy
-    - Serves static files directly
-    - Sends service requests to specific services
-  - Services are linked to subdomains
-- Web certificate issuer
-  - Generates and issues TLS certificates
-  - Let's Encrypt does this for free and is used by Caddy
-- HTML
-  - Hyper Text Markup Language
-  - Elements
-    - Structure:
-      - Open tag
-        - `<name att="val" ...>`
-        - May contain attributes
-      - Content
-        - Between opening and closing tag
-      - Closing tag
-        - `</name>`
-        - Can put in opening tag: `<name ... />`
-    - Types:
-      - `<!DOCTYPE html>`
-        - Notifies browser that this uses the new version of HTML
-      - `<title>`
-        - Sets name of browser tab
-      - `<div>`
-        - Generic page element, containing other elements
-      - `<img>`
-        - `alt`: Name of image, used if picture cannot be seen
-        - `src`: URL of source image
-  - Escape character: `&`
-  - DOM
-    - Document Object Model
-    - Tree structure representing relationship between elements
-    - Can represent HTML, CSS, Javascript
-    - Defined by code
-  - For further information
-    - MDN WebDocs
-    - w3schools
+
+### DNS
+
+- Register IP address corresponding to the server
+- Commands
+  - Run `dig` to get ip address of domain from DNS
+  - Run `whois` to get informatino about the owner of a domain
+- TLD: top level domain
+  - Rightmost
+  - e.g. com, edu
+  - Managed by ICANN
+- Secondary domain
+  - Second-to-rightmost
+  - Managed by authoritative name servers
+- Subdomains
+  - Third, fourth, etc
+  - Managed by owner of a root domain
+- Root domain: secondary domain + TLD
+- DNS records:
+  - A: ip address corresponding to a domain name
+  - NS: authoritative name servers that are listed in the registrar
+  - SOA: contact information for owner
+
+### Gateway
+- Redirects inputs to specific services
+- Our tool: Caddy
+  - Serves static files directly
+  - Sends service requests to specific services
+- Services are linked to subdomains
+
+### Web certificate issuer
+- Generates and issues TLS certificates
+- Let's Encrypt does this for free and is used by Caddy
+
+### HTML
+- Hyper Text Markup Language
+- Elements
+  - Structure:
+    - Open tag
+      - `<name att="val" ...>`
+      - May contain attributes
+    - Content
+      - Between opening and closing tag
+    - Closing tag
+      - `</name>`
+      - Can put in opening tag: `<name ... />`
+  - Types:
+    - `<!DOCTYPE html>`
+      - Notifies browser that this uses the new version of HTML
+    - `<html>`
+      - Root of DOM
+      - `lang`: Page language
+    - `<head>`
+      - Metadata container
+    - `<meta>`
+      - Metadata element
+    - `<title>`
+      - Sets name of browser tab
+    - `<link>`
+      - Used in `head` to reference tab icon
+    - `<body>`
+      - Actual website content
+    - `<header>`
+      - Beginning website section
+    - `<main>`
+      - Main website section
+    - `<footer>`
+      - End website section
+    - `<h1>`
+      - Top-level section header
+    - `<h2>`
+      - Sublevel section header, can go up to `<h9>`
+    - `<div>`
+      - Generic page element, containing other elements
+      - `class`: Mark as type for CSS
+    - `<nav>`
+      - Container for navigation elements
+    - `<menu>`
+      - Container for menu elements
+    - `<p>`
+      - Paragraph element
+    - `<li>`
+      - List item
+    - `<a>`
+      - Hyperlink
+      - `href`: relative path or URL of referenced page
+    - `<img>`
+      - `alt`: Name of image, used if picture cannot be seen
+      - `src`: URL of source image
+    - `<sup>`
+      - Superscript
+    - `<hr>`
+      - Horizontal line
+    - `<form>`
+      - Contains input elements
+    - `<label>`
+      - Text object connected to another element
+    - `<input>`
+      - Input element, such as text box
+    - `<button>`
+      - A button that can cause an action to happen
+    - `<br>`
+      - Line break
+    - `<span>`
+      - Inline element, only as big as its contents
+    - `<ul>`
+      - Unordered list
+    - `<table>`
+      - Table element
+      - `<tr>`
+        - Row
+      - `<td>`
+        - Element in row
+    - `<svg>`
+      - Vector graphic
+    - `<!-- Comment -->`
+      - Displays a comment
+- Escape character: `&`
+  - Used for reserved and Unicode characters
+- DOM
+  - Document Object Model
+  - Tree structure representing relationship between elements
+  - Can represent HTML, CSS, Javascript
+  - Defined by code
+- For further information
+  - MDN WebDocs
+  - w3schools
+
+### CSS
+- Cascading Style Sheets
+- Styles HTML elements
+- Applies `style` attribute to several elements
+- Basically, a list of rules
 
 ## Startup
+
 - Access
   - Public IP: 54.164.246.196
   - Domain: fimgame.click
   - SSH: `ssh -i ~/CS260/demokey260.pem ubuntu@fimgame.click`
+- Deployment
+  - Simon
+    - Clone into temp directory
+    - Run `./deployFiles.sh -k <pem file> -h fimgame.click -s simon`
