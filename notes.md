@@ -193,10 +193,80 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
   - w3schools
 
 ### CSS
+
 - Cascading Style Sheets
 - Styles HTML elements
 - Applies `style` attribute to several elements
 - Basically, a list of rules
+- Rule structure:
+  - Selector
+  - In braces:
+    - Any number of declarations; for each:
+      - Property
+      - (colon)
+      - Value
+      - (semicolon)
+- For example:
+```
+p {
+    color: red;
+}
+```
+- Ways to use
+  - Can be inserted directly in HTML with `style` attribute on any element
+  - Can add `<style>` to `<head>` with CSS in it
+  - Can add `<link>` to `<head>` referencing CSS file
+- Precedence
+  - Location
+    - `style` attribute
+    - `<style>` element
+    - `<link>` element
+  - Inheritance
+    - Rules cascade down HTML inheritance
+    - Child element selector overrides parent selector
+- Selectors
+  - Element: corresponds to all HTML elements of that type
+  - ID: element with specific ID
+  - Class: all HTML elements with certain class attribute
+  - Element+Class: all HTML elements with specific element type and class attribute
+  - List: any among multiple selectors
+  - Descendant: selector with added requirement of being descendant of a specific element type
+  - Child: selector with added requirement of being a direct child of a specific element type
+  - Pseudo: selector with state-based requirement
+- Declarations
+  - Types
+  - Units
+    - px
+    - pt
+    - %
+    - em
+    - rem
+    - vw
+    - vh
+    - vmin
+    - vmax
+- Box model
+  - Content
+  - Surrounded by padding
+  - Surrounded by border
+  - Surrounded by margin
+    - Separates from other elements
+- Fonts
+  - Use good fonts
+How to import from internal source:
+```
+@font-face {
+ font-family: 'FontName';
+ src: url('https://font-location');
+}
+```
+  - How to import from external source:
+```
+@import
+url("https://font-location");
+```
+- Animation
+  - `@keyframes`
 
 ## Startup
 
