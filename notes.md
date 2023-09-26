@@ -253,6 +253,7 @@ p {
     - Separates from other elements
 - Fonts
   - Use good fonts
+
 How to import from internal source:
 ```
 @font-face {
@@ -260,7 +261,7 @@ How to import from internal source:
  src: url('https://font-location');
 }
 ```
-  - How to import from external source:
+How to import from external source:
 ```
 @import
 url("https://font-location");
