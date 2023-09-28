@@ -188,6 +188,17 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
   - Tree structure representing relationship between elements
   - Can represent HTML, CSS, Javascript
   - Defined by code
+- Input
+  - Can use `<form>` element or JavaScript
+  - `<form>` will send data to server, not necessary in all cases
+  - `<input>` element supports several types of input methods
+    - Use `type` attribute to choose type
+    - Use other attributes for options for that type
+    - Common attributes:
+      - `name`
+      - `disabled`
+      - `value`
+      - `required`
 - For further information
   - MDN WebDocs
   - w3schools
