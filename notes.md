@@ -246,6 +246,16 @@ p {
   - Pseudo: selector with state-based requirement
 - Declarations
   - Types
+    - `float`: Alignment within parent
+    - `display`: Space-filling rules
+      - None: does not display
+      - Block: inherits parent width
+      - Inline: only as big as content
+      - Flex: children will be spread across interior
+      - Grid: children are placed into a grid
+    - `flex`: Flex parameters when parent has flex display
+      - First number is share of the remaining width/height that that element gets
+      - Second number is a fixed amount reserved for that element
   - Units
     - px
     - pt
@@ -279,6 +289,14 @@ url("https://font-location");
 ```
 - Animation
   - `@keyframes`
+- Reactive design
+  - Make content change depending on device / dimensions / page position
+  - To prevent mobile-specific changes, use `<meta>` element with default settings
+  - To condition rules on device status, use `@media` query
+- Frameworks
+  - Packages to make CSS faster by simplifying common patterns
+  - To include, use external stylesheet in link and include javascript file in body
+  - To use, add special class names to specific elements
 
 ## Startup
 
