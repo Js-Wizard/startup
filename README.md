@@ -49,7 +49,7 @@ For this deliverable, I have completed the overall structure of my application u
 - **Links** - After logging in, you go to the home page, where there is a menu of options. From there you can go to mode select, how to play, or go back to login. In mode select, the first option takes you directly to the game page, and the second option takes you to 2-player setup first. All pages except login and home have a link in the header to go to home.
 - **Text** - The game is made up of a grid of numbers, the how-to-play page contains the rules for the game, and other pages have simple instructions.
 - **Images** - I made a `favicon.ico` for the website icon, and a `logo.png` which is used for a logo in the header.
-- **Authentication** - The login page has a form with username and password and two buttons, which will be used for sign up / login.
+- **Authentication** - The login page has a form with username and password and two buttons, which will be used for sign up / login. When logged in, the home page shows the user's name, with "Molly" as placeholder.
 - **Database** - On the play page, there is a section with the user's name and their amount of wins and losses. This information will be stored in a row of a database, so that it is saved even when the user logs out.
 - **WebSocket** - On the play page, there is a section that will display live game results, which will be sent to the server and then received by everyone when a game finishes.
 - **3rd-Party Service** - There is a placeholder for a random quote on the how-to-play page.
