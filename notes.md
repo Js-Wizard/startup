@@ -307,4 +307,9 @@ url("https://font-location");
 - Deployment
   - Simon
     - Clone into temp directory
+    - Make sure in simon directory
     - Run `./deployFiles.sh -k <pem file> -h fimgame.click -s simon`
+  - Startup
+    - Commit and push all changes
+    - Make suer in startup directory
+    - Run `./deployFiles.sh -k <pem file> -h fimgame.click -s startup`
