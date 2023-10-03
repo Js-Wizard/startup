@@ -297,6 +297,20 @@ url("https://font-location");
   - Packages to make CSS faster by simplifying common patterns
   - To include, use external stylesheet in link and include javascript file in body
   - To use, add special class names to specific elements
+  - Example: Bootstrap
+- JavaScript
+  - Makes websites interactive
+  - How to add to HTML
+    - Use `<script>` element pointing to external file
+    - Use `<script>` element with JS content
+    - Put into script attribute, such as `onclick` of `<button>` element
+  - Print messages
+    - `console.log`
+    - `alert`
+    - Change HTML
+  - Breakpoints
+    - `debugger;`
+    - Will stop there and pull up sources tab in debug
 
 ## Startup
 
@@ -311,5 +325,5 @@ url("https://font-location");
     - Run `./deployFiles.sh -k <pem file> -h fimgame.click -s simon`
   - Startup
     - Commit and push all changes
-    - Make suer in startup directory
+    - Make sure in startup directory
     - Run `./deployFiles.sh -k <pem file> -h fimgame.click -s startup`
