@@ -329,6 +329,7 @@ url("https://font-location");
   - To prevent mobile-specific changes, use `<meta>` element with default settings
     - `<meta name="viewport" content="width=device-width, initial-scale=1"/>`
   - To condition rules on device status, use `@media` query
+  - 
 - Frameworks
   - Packages to make CSS faster by simplifying common patterns
   - To include, use external stylesheet in link and include javascript file in body
@@ -336,6 +337,7 @@ url("https://font-location");
   - Example: Bootstrap
  
 ### Javascript
+
 - Makes websites interactive
 - How to add to HTML
   - Use `<script>` element pointing to external file
@@ -348,6 +350,49 @@ url("https://font-location");
 - Breakpoints
   - `debugger;`
   - Will stop there and pull up sources tab in debug
+- Manipulate the DOM
+- Code
+  - Weakly typed
+    - Each variable can take on any type
+    - Use `let` or `const` for declaration (`var` is deprecated/discouraged)
+    - Types
+      - number
+      - string
+      - object
+        - array
+        - null
+      - undefined
+      - function
+    - Automatic conversions
+      - array + string = string
+      - number + string = string
+      - string + number + string
+      - number * string = NaN
+      - array + array = string
+      - true + null = 1
+      - true + undefined = NaN
+  - Equality
+    - `=`: assignment
+    - `==`: "casted" equality (don't use)
+    - `===`: true equality
+  - Conditionals
+    - Cast to boolean
+      - "falsy": 0, -0, '', NaN, null, undefined
+      - "truthy": everything else
+    - `switch` can use any type
+  - Strings
+    - Use backticks for strings containing insertions
+      - Insertion: `${expression}`
+  - Functions
+    - To declare: `let f = function(x) {}`
+    - Alternate syntax: `function f(x)`
+    - Arrow function syntax: `(params) => {}` or `(params) => expression`
+    - Missing parameters are undefined
+    - If function doesn't return, the return value is undefined
+    - Optional parameter: `param = val`
+      - Default value if it doesn't get passed in
+    - Closures
+      - A function returning a function
 
 ## Startup
 
