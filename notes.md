@@ -227,6 +227,7 @@ p {
   - Can be inserted directly in HTML with `style` attribute on any element
   - Can add `<style>` to `<head>` with CSS in it
   - Can add `<link>` to `<head>` referencing CSS file
+    - `<link rel="stylesheet" href="styles.css"/>`
 - Precedence
   - Location
     - `style` attribute
@@ -237,25 +238,43 @@ p {
     - Child element selector overrides parent selector
 - Selectors
   - Element: corresponds to all HTML elements of that type
+    - `p`
   - ID: element with specific ID
+    - `#id`
   - Class: all HTML elements with certain class attribute
+    - `.class`
   - Element+Class: all HTML elements with specific element type and class attribute
+    - `p.class`
+  - Attribute: elements with specific element type and certain atribute, optionally with specific attribute value
+    - `p[att]`
+    - `p[att=val]`
   - List: any among multiple selectors
+    - `selector1, selector2, selector3`
   - Descendant: selector with added requirement of being descendant of a specific element type
+    - `div p`
   - Child: selector with added requirement of being a direct child of a specific element type
+    - `div > p`
+  - General sibling: selector must have a certain sibling
+    - `p ~ div`
+  - Adjacent sibling: selector must have a certain adjacent sibling
+    - `p + div`
   - Pseudo: selector with state-based requirement
+    - `p:action`
 - Declarations
-  - Types
-    - `float`: Alignment within parent
+  - Properties
+    - `color`: Set color
+    - `float`: Alignment within parent, text goes around
     - `display`: Space-filling rules
-      - None: does not display
-      - Block: inherits parent width
-      - Inline: only as big as content
-      - Flex: children will be spread across interior
-      - Grid: children are placed into a grid
+      - none: does not display
+      - block: inherits parent width
+      - inline: only as big as content
+      - flex: children will be spread across interior
+      - grid: children are placed into a grid
     - `flex`: Flex parameters when parent has flex display
       - First number is share of the remaining width/height that that element gets
       - Second number is a fixed amount reserved for that element
+    - `font-family`: Type of font
+    - `font-size`: Font size
   - Units
     - px
     - pt
@@ -266,6 +285,18 @@ p {
     - vh
     - vmin
     - vmax
+  - Colors
+    - Keyword
+      - `red`
+    - Hex
+      - `#FFFFFF`
+      - `#FFFFFFFF`
+    - RGB
+      - `rgb(r, g, b)`
+      - `rgb(r, g, b, a)`
+    - HSL
+      - `hsl(h, s, l)`
+      - `hsl(h, s, l, a)`
 - Box model
   - Content
   - Surrounded by padding
@@ -274,7 +305,6 @@ p {
     - Separates from other elements
 - Fonts
   - Use good fonts
-
 How to import from internal source:
 ```
 @font-face {
@@ -288,29 +318,36 @@ How to import from external source:
 url("https://font-location");
 ```
 - Animation
-  - `@keyframes`
+  - Create animation with `@keyframes`
+    - Start with `from`
+    - Middle keyframes with `50%` or similar
+    - End with `to`
+  - Attach animation with `animation-name`
+  - Specify duration with `animation-duration`
 - Reactive design
   - Make content change depending on device / dimensions / page position
   - To prevent mobile-specific changes, use `<meta>` element with default settings
+    - `<meta name="viewport" content="width=device-width, initial-scale=1"/>`
   - To condition rules on device status, use `@media` query
 - Frameworks
   - Packages to make CSS faster by simplifying common patterns
   - To include, use external stylesheet in link and include javascript file in body
   - To use, add special class names to specific elements
   - Example: Bootstrap
-- JavaScript
-  - Makes websites interactive
-  - How to add to HTML
-    - Use `<script>` element pointing to external file
-    - Use `<script>` element with JS content
-    - Put into script attribute, such as `onclick` of `<button>` element
-  - Print messages
-    - `console.log`
-    - `alert`
-    - Change HTML
-  - Breakpoints
-    - `debugger;`
-    - Will stop there and pull up sources tab in debug
+ 
+### Javascript
+- Makes websites interactive
+- How to add to HTML
+  - Use `<script>` element pointing to external file
+  - Use `<script>` element with JS content
+  - Put into script attribute, such as `onclick` of `<button>` element
+- Print messages
+  - `console.log`
+  - `alert`
+  - Change HTML
+- Breakpoints
+  - `debugger;`
+  - Will stop there and pull up sources tab in debug
 
 ## Startup
 
