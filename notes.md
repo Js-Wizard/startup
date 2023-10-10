@@ -398,6 +398,22 @@ url("https://font-location");
       - Default value if it doesn't get passed in
     - Closures
       - A function returning a function
+      - Variables in the returned function include the scope of the closure
+  - Useful built-in functions
+    - `document.querySelector`
+      - Uses CSS to select HTML elements (gets the first one)
+      - The object's properties correspond to HTML attributes
+    - `document.getElementById`
+      - Gets an HTML element having a certain id
+    - `<element>.style.<prop>`
+      - Acts as a CSS declaration for the elements
+    - `<element>.innerHTML`
+      - Get or set the HTML content contained in an element
+    - `window.addEventListener`
+    - `setTimeout`
+      - Sets a timer to call a function when it runs out
+    - `clearTimeout`
+      - Cancels a timer
 
 ## Startup
 
