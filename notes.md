@@ -275,16 +275,21 @@ p {
       - Second number is a fixed amount reserved for that element
     - `font-family`: Type of font
     - `font-size`: Font size
+    - `border-radius`: Makes curved corners for the border
+      - One number: all corners
+      - 4 numbers: each corner
   - Units
-    - px
-    - pt
-    - %
-    - em
-    - rem
-    - vw
-    - vh
-    - vmin
-    - vmax
+    - px: pixel
+    - pt: 1/72 in
+    - in: inch
+    - cm: centimeter
+    - %: % of parent element
+    - em: parent m width
+    - rem: root m width
+    - vw: % of browser width
+    - vh: % of browser height
+    - vmin: % of the smaller browser dimension
+    - vmax: % of the larger browser dimension
   - Colors
     - Keyword
       - `red`
@@ -293,10 +298,10 @@ p {
       - `#FFFFFFFF`
     - RGB
       - `rgb(r, g, b)`
-      - `rgb(r, g, b, a)`
+      - `rgb(r, g, b, a%)`
     - HSL
-      - `hsl(h, s, l)`
-      - `hsl(h, s, l, a)`
+      - `hsl(h, s%, l%)`
+      - `hsl(h, s%, l%, a%)`
 - Box model
   - Content
   - Surrounded by padding
