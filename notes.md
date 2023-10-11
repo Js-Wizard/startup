@@ -278,6 +278,12 @@ p {
     - `border-radius`: Makes curved corners for the border
       - One number: all corners
       - 4 numbers: each corner
+    - `position`: Sets the mode used for positioning
+      - static: default
+      - relative: offset from static position, does not affect other static elements
+      - fixed: fixed position in the window, does not move with scrolling
+      - absolute: fixed position within its parent element
+      - sticky: like relative, but will stay on the screen instead of disappearing from scrolling
   - Units
     - px: pixel
     - pt: 1/72 in
