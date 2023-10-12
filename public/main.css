@@ -23,9 +23,24 @@ header {
 main {
     background-color: hsl(0,0%,10%);
     flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.results-box {
+    flex: 0 250px;
+    padding: 20px;
+}
+
+.user-info {
+    position: absolute;
+    right: 0;
+    text-align: right;
+    padding: 20px;
 }
 
 section {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
