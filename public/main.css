@@ -76,3 +76,7 @@ p {
     font-weight: bold;
     font-style: italic;
 }
+
+#title-desc {
+    margin-bottom: 30px;
+}
