@@ -396,6 +396,34 @@ url("https://font-location");
   - Strings
     - Use backticks for strings containing insertions
       - Insertion: `${expression}`
+    - `s.toUpperCase`, `s.toLowerCase`
+    - `s.split`
+    - `s.endsWith`
+    - `s.replace`
+    - `s.slice`
+  - Arrays
+    - `a.push()`
+    - `a.pop()`
+    - `a.slice()`
+    - `a.length`
+    - `a.map`
+      - Applies function to each element and returns result
+    - `a.reduce`
+      - Reduces array to a single value
+      - Uses a function that takes in the current total and the next element
+      - Total is set to first element, then repeats `total = f(total, a[i])` for remainder
+    - `a.filter`
+      - Returns array with elements that are matched by the provided function
+    - `a.some`
+    - `a.every`
+    - Iterate:
+      - Indices: `for (let index in numbers)`
+      - Values: `for (let value of numbers)`
+    - Spread / Rest
+      - `...x` as a parameter = Rest
+        - Takes multiple parameters and combines into an array
+      - `...x` as a value = Spread
+        - Takes an array/object and separates it into array/object values or function arguments (array only)
   - Functions
     - To declare: `let f = function(x) {}`
     - Alternate syntax: `function f(x)`
@@ -422,6 +450,18 @@ url("https://font-location");
       - Sets a timer to call a function when it runs out
     - `clearTimeout`
       - Cancels a timer
+  - Objects
+    - Can be directly declared with `{ key: value, key: value, ... }`
+    - Objects can be nested
+    - Additional attributes can be assigned to objects even if they don't exist yet
+    - Iterate through properties
+      - Properties: `for ... in`
+      - Values: `for ... of`
+  - Destructuring
+    - `[a, b] = arr`
+    - Equivalent to `a = arr[0], b = arr[1]`
+    - Can be used as a function parameter: `function f([a='default',b='defualt']) {}`
+    - Also applies to objects; this can be used as a weird equivalent of python keyword arguments
 
 ## Startup
 
