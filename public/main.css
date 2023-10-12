@@ -1,0 +1,49 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo img {
+    height: 80px;
+}
+
+.big-logo img {
+    height: 30vh;
+    max-height: min(200px, 45.8vw);
+    max-width: min(393px, 90vw)
+}
+
+main {
+    background-color: hsl(0,0%,10%);
+    flex: 1;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+footer {
+    flex: 0 30px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > * {
+    margin: 5px !important;
+}
