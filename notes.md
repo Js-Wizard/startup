@@ -284,6 +284,8 @@ p {
       - fixed: fixed position in the window, does not move with scrolling
       - absolute: fixed position within its parent element
       - sticky: like relative, but will stay on the screen instead of disappearing from scrolling
+    - `top`, `bottom`, `left`, `right`
+      - For positions other than static, determines how far away it is from the specified edge
   - Units
     - px: pixel
     - pt: 1/72 in
