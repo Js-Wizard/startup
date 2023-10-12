@@ -80,3 +80,26 @@ p {
 #title-desc {
     margin-bottom: 30px;
 }
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.form-row > * {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+menu > li {
+    list-style-type: none;
+    margin: 3px;
+}
+
+menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+}
