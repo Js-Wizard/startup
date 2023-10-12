@@ -57,6 +57,7 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 20px;
 }
 
 form > * {
@@ -76,10 +77,6 @@ p {
     float: right;
     font-weight: bold;
     font-style: italic;
-}
-
-#title-desc {
-    margin-bottom: 30px;
 }
 
 .form-row {
