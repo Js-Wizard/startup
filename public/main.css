@@ -2,6 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    background-color: hsl(240, 100%, 15%) !important;
 }
 
 header {
@@ -21,15 +22,33 @@ header {
 }
 
 main {
-    background-color: hsl(0,0%,10%);
+    background-color: hsl(240, 100%, 10%);
     flex: 1;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 }
 
 .results-box {
-    flex: 0 250px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 300px;
     padding: 20px;
+    background-color: hsl(240, 100%, 5%);
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.log {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.results-box h2 {
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    
 }
 
 .user-info {
@@ -148,4 +167,5 @@ h2 {
     color: black;
     background-color: hsl(54, 100%, 50%);
     border-radius: 50%;
+    box-shadow: 0px 5px 0px hsl(44, 100%, 50%);
 }
