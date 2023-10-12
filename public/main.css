@@ -18,7 +18,15 @@ header {
 .big-logo img {
     height: 30vh;
     max-height: min(200px, 45.8vw);
-    max-width: min(393px, 90vw)
+    max-width: min(393px, 90vw);
+    background-color: rgba(0,100,255,0.3);
+    box-shadow: 
+        inset 0px 0px 10px hsl(240, 100%, 10%),
+        inset 0px 0px 20px hsl(240, 100%, 10%),
+        inset 0px 0px 30px hsl(240, 100%, 10%),
+        inset 0px 0px 40px hsl(240, 100%, 10%),
+        inset 0px 0px 50px hsl(240, 100%, 10%),
+        inset 0px 0px 100px hsl(240, 100%, 10%);
 }
 
 main {
