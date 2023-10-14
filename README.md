@@ -63,7 +63,7 @@ For this deliverable, I added style and formatting to my application using CSS.
 - **Responsive to window resizing** - There are responsive header and footer on all pages. On the play page, the size of the number grid is responsive, and the live results will move to the bottom if the window gets too narrow.
 - **Application elements** - Content is generally center-aligned and justified. The live results in the game page are shown on the side (or beneath). For the overall style I went for a sort of dark blue-indigo theme with light elements. The game board is a purple grid, with cells styled according to the current state for each number.
 - **Application text content** - Most text is white to stand out against the dark background. Headings have a subtle glow. Player names are coloured cyan, and the number of wins/losses has color as well. The quote uses a Bootstrap-style info box.
-- **Application images** There was not too much change needed here, but the Fim logo is center-aligned, and I added a glow behind the large version on the login-page.
+- **Application images** - There was not too much change needed here, but the Fim logo is center-aligned, and I added a glow behind the large version on the login-page.
 
 # Notes for exams
 [Notes](notes.md)
