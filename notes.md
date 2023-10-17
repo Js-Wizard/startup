@@ -445,6 +445,8 @@ url("https://font-location");
       - Acts as a CSS declaration for the elements
     - `<element>.innerHTML`
       - Get or set the HTML content contained in an element
+    - `<element>.insertAdjacentHTML`
+      - Inserts some additional HTML at a certain point in the element
     - `window.addEventListener`
     - `setTimeout`
       - Sets a timer to call a function when it runs out
@@ -460,8 +462,23 @@ url("https://font-location");
   - Destructuring
     - `[a, b] = arr`
     - Equivalent to `a = arr[0], b = arr[1]`
-    - Can be used as a function parameter: `function f([a='default',b='defualt']) {}`
+    - Can be used as a function parameter: `function f([a='default',b='default']) {}`
     - Also applies to objects; this can be used as a weird equivalent of python keyword arguments
+  - Asynchronous handling: Promise
+    - 3 possible states
+      - Pending
+      - Success
+      - Failure
+    - Syntax
+      - `new Promise(function)`
+      - `.then(successFunction, [failureFunction])`
+      - `.then(successFunction, [failureFunction])`
+      - ...
+      - `.catch(failureFunction)`
+    - Alternate method: async + await
+      - Call inside function declared async
+      - `const result = await func(...)` or `const result = await new Promise(func)`
+      - And then use try/catch for failures
 
 ## Startup
 
