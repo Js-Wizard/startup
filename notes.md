@@ -447,6 +447,14 @@ url("https://font-location");
       - Get or set the HTML content contained in an element
     - `<element>.insertAdjacentHTML`
       - Inserts some additional HTML at a certain point in the element
+    - `<element>.children`
+      - Gets array of children elements
+    - `<element>.tagName`
+      - Gets the name of the element
+    - `<element>.textContent`
+      - Gets or sets the text content in an element
+    - `<element>.appendChild`
+      - Changes an existing element to be a child of another
     - `window.addEventListener`
     - `setTimeout`
       - Sets a timer to call a function when it runs out
@@ -479,6 +487,30 @@ url("https://font-location");
       - Call inside function declared async
       - `const result = await func(...)` or `const result = await new Promise(func)`
       - And then use try/catch for failures
+  - Classes
+    - Use `class` to declare a class
+    - `static` keyword for static variables
+    - To declare constructor: `constructor() {}`
+    - Inheritance: `extends`
+    - `super`
+    - Convention for private variables: start with underscore
+    - `get`, `set`
+      - Example: `get prop() {return this._prop;}`
+    - Use `this` to refer to the instance of the object
+  - `localStorage`
+    - Acts as a persistent object
+    - `localStorage.setItem(key, value)`
+    - `localStorage.getItem(key, value)`
+- JSON
+  - Representation of the data in a JavaScript object
+  - To convert from object to JSON: `JSON.stringify(obj)`
+  - To convert from JSON to object: `JSON.parse(str)`
+  - Does not include functions
+  - Useful for `localStorage`
+- Event handlers
+  - Some HTML elements have handlers that can be attached to JS functions
+  - `<element>.addEventListener`
+    - Dynamically add a handler
 
 ## Startup
 
