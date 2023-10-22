@@ -501,6 +501,27 @@ url("https://font-location");
     - Acts as a persistent object
     - `localStorage.setItem(key, value)`
     - `localStorage.getItem(key, value)`
+  - Scope
+    - Types
+      - Global
+        - Global `function` declarations
+        - Accessible anywhere
+      - Module
+        - `import`
+        - Accessible within the module (but not from HTML)
+      - Function
+        - `var`
+        - Accessible within the same function
+      - Block
+        - `const`, `let`
+        - Accessible within braces
+    - `this` keyword
+      - `this` outside function/object: refers to runtime context (window)
+      - `this` in object: refers to the object
+      - `this` in function: refers to global this (or undefined if strict) if not owned by object, or the object if owned by object
+    - Closures
+      - Variables can always be referenced as long as they are in scope, even if a function declared in the scope is used outside of the scope
+      - Arrow functions are different, they use the scope of the creation context
 - JSON
   - Representation of the data in a JavaScript object
   - To convert from object to JSON: `JSON.stringify(obj)`
@@ -511,6 +532,11 @@ url("https://font-location");
   - Some HTML elements have handlers that can be attached to JS functions
   - `<element>.addEventListener`
     - Dynamically add a handler
+- Modules
+  - Use `export` before function declaration to make something available to other modules
+  - use `import { <func> } from 'file'` to get a function from another module
+  - Modules can only be accessed from other modules
+    - Exception: attach function to `window` object or use `addEventListener`
 
 ## Startup
 
