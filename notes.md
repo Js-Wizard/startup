@@ -393,6 +393,7 @@ url("https://font-location");
       - "falsy": 0, -0, '', NaN, null, undefined
       - "truthy": everything else
     - `switch` can use any type
+    - `??` operator: use left value if defined, else right value
   - Strings
     - Use backticks for strings containing insertions
       - Insertion: `${expression}`
@@ -497,6 +498,7 @@ url("https://font-location");
     - `get`, `set`
       - Example: `get prop() {return this._prop;}`
     - Use `this` to refer to the instance of the object
+    - No `function` keyword needed for class methods
   - `localStorage`
     - Acts as a persistent object
     - `localStorage.setItem(key, value)`
