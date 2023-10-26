@@ -436,27 +436,39 @@ url("https://font-location");
     - Closures
       - A function returning a function
       - Variables in the returned function include the scope of the closure
+  - DOM
+    - Can manipulate with JS
+    - `document`: root element in DOM
+      - `document.querySelector`
+        - Uses CSS to select HTML elements (gets the first one)
+        - The object's properties correspond to HTML attributes
+      - `document.querySelectorAll`
+        - Array of elements matching CSS query
+      - `document.getElementById`
+        - Gets an HTML element having a certain id
+      - `document.createElement`
+        - Make a new element
+    - Element properties/methods
+      - `style.<prop>`
+        - Acts as a CSS declaration for the elements
+      - `innerHTML`
+        - Get or set the HTML content contained in an element
+      - `insertAdjacentHTML`
+        - Inserts some additional HTML at a certain point in the element
+      - `children`
+        - Gets array of children elements
+      - `tagName`
+        - Gets the name of the element
+      - `textContent`
+        - Gets or sets the text content in an element
+      - `appendChild`
+        - Changes an existing element to be a child of another
+      - `removeChild`
+        - Deletes a child of a certain element
+      - `addEventListener`
+        - Attaches a handler for an event relating to the element
+        - Use `window` for entire window
   - Useful built-in functions
-    - `document.querySelector`
-      - Uses CSS to select HTML elements (gets the first one)
-      - The object's properties correspond to HTML attributes
-    - `document.getElementById`
-      - Gets an HTML element having a certain id
-    - `<element>.style.<prop>`
-      - Acts as a CSS declaration for the elements
-    - `<element>.innerHTML`
-      - Get or set the HTML content contained in an element
-    - `<element>.insertAdjacentHTML`
-      - Inserts some additional HTML at a certain point in the element
-    - `<element>.children`
-      - Gets array of children elements
-    - `<element>.tagName`
-      - Gets the name of the element
-    - `<element>.textContent`
-      - Gets or sets the text content in an element
-    - `<element>.appendChild`
-      - Changes an existing element to be a child of another
-    - `window.addEventListener`
     - `setTimeout`
       - Sets a timer to call a function when it runs out
     - `clearTimeout`
