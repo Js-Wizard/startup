@@ -513,8 +513,11 @@ url("https://font-location");
     - No `function` keyword needed for class methods
   - `localStorage`
     - Acts as a persistent object
+    - Can only store string, number, or boolean
     - `localStorage.setItem(key, value)`
-    - `localStorage.getItem(key, value)`
+    - `localStorage.getItem(key)`
+    - `localStorage.removeItem(key)`
+    - `localStorage.clear()`
   - Scope
     - Types
       - Global
