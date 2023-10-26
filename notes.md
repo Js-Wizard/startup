@@ -554,6 +554,59 @@ url("https://font-location");
   - use `import { <func> } from 'file'` to get a function from another module
   - Modules can only be accessed from other modules
     - Exception: attach function to `window` object or use `addEventListener`
+   
+### Services
+
+- From JavaScript (client)
+  - Use `fetch`
+    - Provide a URL, it is recommended to do this asynchronously
+    - Returns a promise to get a response object
+    - Response object has methods to get its information
+      - `json`: gets json object from response body
+    - Used for all HTTP methods
+      - Default is GET
+    - To add method/header/body changes, use an object representing those changes as the second parameter
+      - method (string)
+      - headers (object w/ key-value)
+      - body (string)
+- 3rd-party services
+  - Already exist, just use `fetch`
+- Custom services
+  - Requires endpoints and implementation on server
+  - Can themselves `fetch` from other services
+- HTTP/HTTPS
+  - Test requests using `curl`
+  - See requests in browser debugger under XHR/Fetch
+  - URL
+    - Scheme
+    - Domain
+    - Port
+    - Path
+    - Parameters
+    - Anchor
+  - Methods
+    - GET
+    - POST
+    - PUT
+      - Updates existing resource
+    - DELETE
+    - OPTIONS
+      - Get info about resource
+  - Headers
+    - Accept
+      - What type of content is expected to be returned (MIME type)
+      - */* means any
+    - Set-Cookie
+      - Create a cookie that can be read at a future point
+    - Cache-Control
+      - Used for cache managment
+    - Content-Type
+      - Indicates the MIME type of the body
+  - Response codes
+    - 2xx successful
+    - 3xx redirect
+    - 4xx client error
+    - 5xx server error
 
 ## Startup
 
