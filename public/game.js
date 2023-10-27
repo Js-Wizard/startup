@@ -4,7 +4,7 @@ class Game
     {
         this.board = document.querySelector(".board");
         this.maxNumber = 30;
-        this.numPlayers = localStorage.getItem("player-count") ?? 1;
+        this.numPlayers = Number(localStorage.getItem("player-count") ?? 1);
         this.userName = localStorage.getItem("user") ?? "Player 1";
         this.guestName = localStorage.getItem("2p-name") ?? "Player 2";
         this.reset();
@@ -18,6 +18,7 @@ class Game
         this.currentNumber = 0;
         this.updateText();
         this.updateBoard();
+        this.allowInput = true;
     }
 
     updateText()
@@ -74,7 +75,7 @@ class Game
                 const btn = document.createElement("button");
                 btn.textContent = i + 1;
                 btn.className = "btn btn-outline-light";
-                btn.addEventListener("click", () => this.doMove(i));
+                btn.addEventListener("click", () => { if(this.allowInput) { this.doMove(i); } });
 
                 cell.appendChild(btn);
             }
@@ -85,12 +86,36 @@ class Game
 
     isValid(idx)
     {
-        return true;
+        if (this.currentNumber === 0)
+        {
+            return idx !== 0;
+        }
+
+        const num = idx + 1;
+        return !this.usedNumbers[idx] && num !== this.currentNumber
+            && (this.currentNumber % num === 0 || this.usedNumbers[num - this.currentNumber - 1]);
     }
 
     doMove(idx)
     {
-        return;
+        if (!this.isValid(idx)) { return; }
+
+        this.allowInput = false;
+        this.usedNumbers[this.currentNumber - 1] = true;
+        this.currentNumber = idx + 1;
+        this.userTurn = !this.userTurn;
+
+        this.updateText();
+        this.updateBoard();
+
+        if (this.numPlayers === 1 && !this.userTurn)
+        {
+            
+        }
+        else
+        {
+            this.allowInput = true;
+        }
     }
 }
 
