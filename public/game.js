@@ -5,8 +5,10 @@ class Game
         this.board = document.querySelector(".board");
         this.maxNumber = 30;
         this.numPlayers = Number(localStorage.getItem("player-count") ?? 1);
-        this.userName = localStorage.getItem("user") ?? "Player 1";
-        this.guestName = localStorage.getItem("2p-name") ?? "Player 2";
+        this.userName = localStorage.getItem("user");
+        if (!this.userName) { this.userName = "Player 1"; }
+        this.guestName = localStorage.getItem("2p-name");
+        if (!this.guestName) { this.guestName = "Player 2"; }
         this.reset();
     }
 
@@ -110,7 +112,7 @@ class Game
 
         if (this.numPlayers === 1 && !this.userTurn)
         {
-            
+
         }
         else
         {
