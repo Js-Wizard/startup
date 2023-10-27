@@ -6,6 +6,8 @@
         <title>Fim</title>
         <link rel="icon" href="favicon.ico"/>
 
+        <script src="setup.js"></script>
+
         <link rel="stylesheet" href="main.css"/>
 
         <link
@@ -25,10 +27,10 @@
         <main>
             <section>
                 <h1>Enter second player name</h1>
-                <form method="get" action="play.html">
+                <form action="javascript:void(0);">
                     <div class="form-row">
                         <input type="text" id="2p-name" placeholder="name">
-                        <button type="submit" class="btn btn-primary">Play</button>
+                        <button type="submit" class="btn btn-primary" onclick="play2p()">Play</button>
                     </div>
                 </form>
                 <menu>
