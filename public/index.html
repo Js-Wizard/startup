@@ -6,6 +6,8 @@
         <title>Fim</title>
         <link rel="icon" href="favicon.ico"/>
 
+        <script src="login.js"></script>
+
         <link rel="stylesheet" href="main.css"/>
 
         <link
@@ -21,12 +23,12 @@
                 <div class="big-logo"><img alt="fim logo" src="logo.png"></div>
                 <span><i>a game of numbers</i></span>
 
-                <form method="get" action="home.html">
+                <form action="javascript:void(0);">
                     <input type="text" id="username" placeholder="username"/>
                     <input type="text" id="password" placeholder="password"/>
                     <div>
-                        <button type="submit" class="btn btn-primary">Log In</button>
-                        <button type="submit" class="btn btn-secondary">Sign Up</button>
+                        <button type="submit" class="btn btn-primary" onclick="login()">Log In</button>
+                        <button type="submit" class="btn btn-secondary" onclick="login()">Sign Up</button>
                     </div>
                 </form>
             </section>
