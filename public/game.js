@@ -2,7 +2,10 @@ class Game
 {
     constructor()
     {
+        this.allowInput = false;
         this.board = document.querySelector(".board");
+        this.gameText = document.getElementById("game-text");
+        this.options = document.querySelector(".game-end-options");
         this.maxNumber = 30;
         this.numPlayers = Number(localStorage.getItem("player-count") ?? 1);
         this.userName = localStorage.getItem("user");
@@ -15,9 +18,10 @@ class Game
     reset()
     {
         this.userTurn = true;
-        this.allowInput = false;
         this.usedNumbers = new Array(this.maxNumber).fill(false);
         this.currentNumber = 0;
+        this.gameText.style = "";
+        this.options.style = "";
         this.updateText();
         this.updateBoard();
         this.allowInput = true;
@@ -25,33 +29,33 @@ class Game
 
     updateText()
     {
-        const textEl = document.getElementById("game-text");
-        let playerText = '';
+        this.gameText.textContent = this.playerText(true) + " Turn";
+    }
 
+    playerText(isPossessive)
+    {
         if (this.numPlayers === 1)
         {
             if (this.userTurn)
             {
-                playerText = "Your";
+                return "You" + (isPossessive ? "r" : "");
             }
             else
             {
-                playerText = "CPU's";
+                return "CPU" + (isPossessive ? "'s" : "");
             }
         }
         else
         {
             if (this.userTurn)
             {
-                playerText = this.userName + "'s";
+                return this.userName + (isPossessive ? "'s" : "");
             }
             else
             {
-                playerText = this.guestName + "'s";
+                return this.guestName + (isPossessive ? "'s" : "");
             }
         }
-
-        textEl.textContent = playerText + " Turn";
     }
 
     updateBoard()
@@ -98,6 +102,19 @@ class Game
             && (this.currentNumber % num === 0 || this.usedNumbers[num - this.currentNumber - 1]);
     }
 
+    validMoveExists()
+    {
+        for (let i = 0; i < this.maxNumber; i++)
+        {
+            if (this.isValid(i))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     doMove(idx)
     {
         if (!this.isValid(idx)) { return; }
@@ -110,6 +127,12 @@ class Game
         this.updateText();
         this.updateBoard();
 
+        if (!this.validMoveExists())
+        {
+            this.endGame();
+            return;
+        }
+
         if (this.numPlayers === 1 && !this.userTurn)
         {
 
@@ -118,6 +141,24 @@ class Game
         {
             this.allowInput = true;
         }
+    }
+
+    endGame()
+    {
+        this.userTurn = !this.userTurn;
+        const playerText = this.playerText(false);
+        this.gameText.textContent = playerText + " win" + (playerText === "You" ? "" : "s") + "!";
+
+        if (this.userTurn)
+        {
+            this.gameText.style = "color: green; text-shadow: 0px 0px 3px green;";
+        }
+        else
+        {
+            this.gameText.style = "color: red; text-shadow: 0px 0px 3px red;";
+        }
+
+        this.options.style = "display: block";
     }
 }
 
