@@ -169,3 +169,45 @@ class Game
 }
 
 const game = new Game();
+
+const mockPlayers = [
+    "Geoff",
+    "Scratch",
+    "Libby",
+    "Darryl",
+    "Pete",
+    "Jeff",
+    "Sharon",
+    "Nin",
+    "Jinx",
+    "The Chairman",
+    "Sir Alister",
+    "Grimbella",
+    "Bobby",
+    "Sunny",
+    "Atomic Pink",
+    "June",
+    "Oliver",
+    "Esther",
+    "Reuben",
+    "Sheela",
+    "Kat"
+];
+
+setInterval(() => {
+    let message;
+
+    const mockPlayer = mockPlayers[Math.floor(Math.random() * mockPlayers.length)];
+    if (Math.random() < 0.5)
+    {
+        const turns = Math.floor(Math.random() * 25 + 5);
+        message = `<li><span class="player-name">${mockPlayer}</span> won in ${turns} turns!</li>`;
+    }
+    else
+    {
+        message = `<li><span class="player-name">${mockPlayer}</span> lost...</li>`;
+    }
+    
+    const logText = document.querySelector('.log');
+    logText.innerHTML = message + logText.innerHTML;
+  }, 3000);
