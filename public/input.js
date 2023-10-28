@@ -2,6 +2,7 @@ function login()
 {
     const nameEl = document.getElementById("username");
     localStorage.setItem("user", nameEl.value);
+    localStorage.removeItem("guest-data");
     window.location.href = "home.html";
 }
 

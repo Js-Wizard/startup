@@ -16,7 +16,7 @@ class Game
         this.gameText = document.getElementById("game-text");
         this.options = document.querySelector(".game-end-options");
         this.maxNumber = 30;
-        this.cpuDepth = 10;
+        this.cpuDepth = 5;
         this.numPlayers = Number(localStorage.getItem("player-count") ?? 1);
         this.userName = localStorage.getItem("user");
         if (!this.userName) { this.userName = "Player 1"; }
@@ -156,10 +156,12 @@ class Game
         if (this.userTurn)
         {
             this.gameText.style = "color: green; text-shadow: 0px 0px 3px green;";
+            win();
         }
         else
         {
             this.gameText.style = "color: red; text-shadow: 0px 0px 3px red;";
+            lose();
         }
 
         this.options.style = "display: block";
