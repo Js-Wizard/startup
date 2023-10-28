@@ -34,7 +34,7 @@ function optimalMove(cpuDepth, usedNumbers, currentNumber)
     {
         if (isValid(i, usedNumbers, currentNumber))
         {
-            const moveScore = -score(cpuDepth - 1, ...stateAfter(i, usedNumbers, currentNumber));
+            const moveScore = -score(cpuDepth - 1, ...stateAfter(i, usedNumbers, currentNumber), -bestScore);
             if (moveScore >= bestScore)
             {
                 if (moveScore > bestScore)
@@ -55,7 +55,7 @@ function optimalMove(cpuDepth, usedNumbers, currentNumber)
     return bestMoves[Math.floor(Math.random() * bestMoves.length)];
 }
 
-function score(depthRemaining, usedNumbers, currentNumber)
+function score(depthRemaining, usedNumbers, currentNumber, pruningThreshold)
 {
     if (depthRemaining < 0) { return 0; }
 
@@ -77,10 +77,14 @@ function score(depthRemaining, usedNumbers, currentNumber)
     {
         if (isValid(i, usedNumbers, currentNumber))
         {
-            const moveScore = -score(depthRemaining - 1, ...stateAfter(i, usedNumbers, currentNumber));
+            const moveScore = -score(depthRemaining - 1, ...stateAfter(i, usedNumbers, currentNumber), -bestScore);
             if (moveScore > bestScore)
             {
                 bestScore = moveScore;
+                if (bestScore > pruningThreshold)
+                {
+                    return bestScore;
+                }
             }
         }
     }
