@@ -393,6 +393,7 @@ url("https://font-location");
       - "falsy": 0, -0, '', NaN, null, undefined
       - "truthy": everything else
     - `switch` can use any type
+    - `??` operator: use left value if defined, else right value
   - Strings
     - Use backticks for strings containing insertions
       - Insertion: `${expression}`
@@ -435,17 +436,39 @@ url("https://font-location");
     - Closures
       - A function returning a function
       - Variables in the returned function include the scope of the closure
+  - DOM
+    - Can manipulate with JS
+    - `document`: root element in DOM
+      - `document.querySelector`
+        - Uses CSS to select HTML elements (gets the first one)
+        - The object's properties correspond to HTML attributes
+      - `document.querySelectorAll`
+        - Array of elements matching CSS query
+      - `document.getElementById`
+        - Gets an HTML element having a certain id
+      - `document.createElement`
+        - Make a new element
+    - Element properties/methods
+      - `style.<prop>`
+        - Acts as a CSS declaration for the elements
+      - `innerHTML`
+        - Get or set the HTML content contained in an element
+      - `insertAdjacentHTML`
+        - Inserts some additional HTML at a certain point in the element
+      - `children`
+        - Gets array of children elements
+      - `tagName`
+        - Gets the name of the element
+      - `textContent`
+        - Gets or sets the text content in an element
+      - `appendChild`
+        - Changes an existing element to be a child of another
+      - `removeChild`
+        - Deletes a child of a certain element
+      - `addEventListener`
+        - Attaches a handler for an event relating to the element
+        - Use `window` for entire window
   - Useful built-in functions
-    - `document.querySelector`
-      - Uses CSS to select HTML elements (gets the first one)
-      - The object's properties correspond to HTML attributes
-    - `document.getElementById`
-      - Gets an HTML element having a certain id
-    - `<element>.style.<prop>`
-      - Acts as a CSS declaration for the elements
-    - `<element>.innerHTML`
-      - Get or set the HTML content contained in an element
-    - `window.addEventListener`
     - `setTimeout`
       - Sets a timer to call a function when it runs out
     - `clearTimeout`
@@ -460,8 +483,130 @@ url("https://font-location");
   - Destructuring
     - `[a, b] = arr`
     - Equivalent to `a = arr[0], b = arr[1]`
-    - Can be used as a function parameter: `function f([a='default',b='defualt']) {}`
+    - Can be used as a function parameter: `function f([a='default',b='default']) {}`
     - Also applies to objects; this can be used as a weird equivalent of python keyword arguments
+  - Asynchronous handling: Promise
+    - 3 possible states
+      - Pending
+      - Success
+      - Failure
+    - Syntax
+      - `new Promise(function)`
+      - `.then(successFunction, [failureFunction])`
+      - `.then(successFunction, [failureFunction])`
+      - ...
+      - `.catch(failureFunction)`
+    - Alternate method: async + await
+      - Call inside function declared async
+      - `const result = await func(...)` or `const result = await new Promise(func)`
+      - And then use try/catch for failures
+  - Classes
+    - Use `class` to declare a class
+    - `static` keyword for static variables
+    - To declare constructor: `constructor() {}`
+    - Inheritance: `extends`
+    - `super`
+    - Convention for private variables: start with underscore
+    - `get`, `set`
+      - Example: `get prop() {return this._prop;}`
+    - Use `this` to refer to the instance of the object
+    - No `function` keyword needed for class methods
+  - `localStorage`
+    - Acts as a persistent object
+    - Can only store string, number, or boolean
+    - `localStorage.setItem(key, value)`
+    - `localStorage.getItem(key)`
+    - `localStorage.removeItem(key)`
+    - `localStorage.clear()`
+  - Scope
+    - Types
+      - Global
+        - Global `function` declarations
+        - Accessible anywhere
+      - Module
+        - `import`
+        - Accessible within the module (but not from HTML)
+      - Function
+        - `var`
+        - Accessible within the same function
+      - Block
+        - `const`, `let`
+        - Accessible within braces
+    - `this` keyword
+      - `this` outside function/object: refers to runtime context (window)
+      - `this` in object: refers to the object
+      - `this` in function: refers to global this (or undefined if strict) if not owned by object, or the object if owned by object
+    - Closures
+      - Variables can always be referenced as long as they are in scope, even if a function declared in the scope is used outside of the scope
+      - Arrow functions are different, they use the scope of the creation context
+- JSON
+  - Representation of the data in a JavaScript object
+  - To convert from object to JSON: `JSON.stringify(obj)`
+  - To convert from JSON to object: `JSON.parse(str)`
+  - Does not include functions
+  - Useful for `localStorage`
+- Event handlers
+  - Some HTML elements have handlers that can be attached to JS functions
+  - `<element>.addEventListener`
+    - Dynamically add a handler
+- Modules
+  - Use `export` before function declaration to make something available to other modules
+  - use `import { <func> } from 'file'` to get a function from another module
+  - Modules can only be accessed from other modules
+    - Exception: attach function to `window` object or use `addEventListener`
+   
+### Services
+
+- From JavaScript (client)
+  - Use `fetch`
+    - Provide a URL, it is recommended to do this asynchronously
+    - Returns a promise to get a response object
+    - Response object has methods to get its information
+      - `json`: gets json object from response body
+    - Used for all HTTP methods
+      - Default is GET
+    - To add method/header/body changes, use an object representing those changes as the second parameter
+      - method (string)
+      - headers (object w/ key-value)
+      - body (string)
+- 3rd-party services
+  - Already exist, just use `fetch`
+- Custom services
+  - Requires endpoints and implementation on server
+  - Can themselves `fetch` from other services
+- HTTP/HTTPS
+  - Test requests using `curl`
+  - See requests in browser debugger under XHR/Fetch
+  - URL
+    - Scheme
+    - Domain
+    - Port
+    - Path
+    - Parameters
+    - Anchor
+  - Methods
+    - GET
+    - POST
+    - PUT
+      - Updates existing resource
+    - DELETE
+    - OPTIONS
+      - Get info about resource
+  - Headers
+    - Accept
+      - What type of content is expected to be returned (MIME type)
+      - */* means any
+    - Set-Cookie
+      - Create a cookie that can be read at a future point
+    - Cache-Control
+      - Used for cache managment
+    - Content-Type
+      - Indicates the MIME type of the body
+  - Response codes
+    - 2xx successful
+    - 3xx redirect
+    - 4xx client error
+    - 5xx server error
 
 ## Startup
 
