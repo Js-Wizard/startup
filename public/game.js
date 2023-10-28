@@ -1,13 +1,22 @@
+"use strict";
+
 class Game
 {
     constructor()
     {
+        if (window.Worker)
+        {
+            this.worker = new Worker("cpu.js");
+            this.worker.onmessage = (e) => {
+                setTimeout(() => { this.cpuMove(e.data); }, 1000);
+            }
+        }
         this.allowInput = false;
         this.board = document.querySelector(".board");
         this.gameText = document.getElementById("game-text");
         this.options = document.querySelector(".game-end-options");
         this.maxNumber = 30;
-        this.cpuDepth = 5;
+        this.cpuDepth = 10;
         this.numPlayers = Number(localStorage.getItem("player-count") ?? 1);
         this.userName = localStorage.getItem("user");
         if (!this.userName) { this.userName = "Player 1"; }
@@ -75,7 +84,7 @@ class Game
             {
                 cell.className = "current-number";
             }
-            else if (this.isValid(i))
+            else if (isValid(i, this.usedNumbers, this.currentNumber))
             {
                 cell.textContent = '';
 
@@ -91,34 +100,9 @@ class Game
         }
     }
 
-    isValid(idx, usedNumbers = this.usedNumbers, currentNumber = this.currentNumber)
-    {
-        if (currentNumber === 0)
-        {
-            return idx !== 0;
-        }
-
-        const num = idx + 1;
-        return !usedNumbers[idx] && num !== currentNumber
-            && (currentNumber % num === 0 || usedNumbers[num - currentNumber - 1]);
-    }
-
-    validMoveExists(usedNumbers = this.usedNumbers, currentNumber = this.currentNumber)
-    {
-        for (let i = 0; i < this.maxNumber; i++)
-        {
-            if (this.isValid(i, usedNumbers, currentNumber))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     doMove(idx)
     {
-        if (!this.isValid(idx)) { return; }
+        if (!isValid(idx, this.usedNumbers, this.currentNumber)) { return; }
 
         this.allowInput = false;
         this.usedNumbers[this.currentNumber - 1] = true;
@@ -128,7 +112,7 @@ class Game
         this.updateText();
         this.updateBoard();
 
-        if (!this.validMoveExists())
+        if (!validMoveExists(this.usedNumbers, this.currentNumber))
         {
             this.endGame();
             return;
@@ -136,8 +120,14 @@ class Game
 
         if (this.numPlayers === 1 && !this.userTurn)
         {
-            const cpuMove = this.optimalMove();
-            setTimeout(() => { this.doMove(cpuMove); }, 1000);
+            if (window.Worker)
+            {
+                this.worker.postMessage([this.cpuDepth, this.usedNumbers, this.currentNumber]);
+            }
+            else
+            {
+                setTimeout(() => { this.cpuMove(optimalMove(this.cpuDepth, this.usedNumbers, this.currentNumber)); }, 1000);
+            }
         }
         else
         {
@@ -145,75 +135,16 @@ class Game
         }
     }
 
-    optimalMove()
+    cpuMove(idx)
     {
-        let bestMoves = [];
-        let bestScore = -(this.cpuDepth + 1);
-
-        for (let i = 0; i < this.maxNumber; i++)
+        if (idx >= 0)
         {
-            if (this.isValid(i))
-            {
-                const moveScore = -this.score(this.cpuDepth - 1, ...this.stateAfter(i));
-                if (moveScore >= bestScore)
-                {
-                    if (moveScore > bestScore)
-                    {
-                        bestScore = moveScore;
-                        bestMoves = [];
-                    }
-                    bestMoves.push(i);
-                }
-            }
+            this.doMove(idx);
         }
-
-        if (bestMoves.length === 0)
+        else
         {
-            return -1;
+            console.error("No cpu moves found");
         }
-
-        return bestMoves[Math.floor(Math.random() * bestMoves.length)];
-    }
-
-    stateAfter(moveIdx, usedNumbers = this.usedNumbers, currentNumber = this.currentNumber)
-    {
-        let newUsedNumbers = [...usedNumbers];
-        newUsedNumbers[currentNumber - 1] = true;
-        const newCurrentNumber = moveIdx + 1;
-        return [newUsedNumbers, newCurrentNumber];
-    }
-
-    score(depthRemaining, usedNumbers, currentNumber)
-    {
-        if (depthRemaining < 0) { return 0; }
-
-        let bestScore = -(depthRemaining + 1);
-
-        if (depthRemaining === 0)
-        {
-            if (this.validMoveExists(usedNumbers, currentNumber))
-            {
-                return 0;
-            }
-            else
-            {
-                return bestScore;
-            }
-        }
-
-        for (let i = 0; i < this.maxNumber; i++)
-        {
-            if (this.isValid(i, usedNumbers, currentNumber))
-            {
-                const moveScore = -this.score(depthRemaining - 1, ...this.stateAfter(i, usedNumbers, currentNumber));
-                if (moveScore > bestScore)
-                {
-                    bestScore = moveScore;
-                }
-            }
-        }
-
-        return bestScore;
     }
 
     endGame()
