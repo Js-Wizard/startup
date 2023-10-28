@@ -7,6 +7,7 @@ class Game
         this.gameText = document.getElementById("game-text");
         this.options = document.querySelector(".game-end-options");
         this.maxNumber = 30;
+        this.cpuDepth = 5;
         this.numPlayers = Number(localStorage.getItem("player-count") ?? 1);
         this.userName = localStorage.getItem("user");
         if (!this.userName) { this.userName = "Player 1"; }
@@ -90,23 +91,23 @@ class Game
         }
     }
 
-    isValid(idx)
+    isValid(idx, usedNumbers = this.usedNumbers, currentNumber = this.currentNumber)
     {
-        if (this.currentNumber === 0)
+        if (currentNumber === 0)
         {
             return idx !== 0;
         }
 
         const num = idx + 1;
-        return !this.usedNumbers[idx] && num !== this.currentNumber
-            && (this.currentNumber % num === 0 || this.usedNumbers[num - this.currentNumber - 1]);
+        return !usedNumbers[idx] && num !== currentNumber
+            && (currentNumber % num === 0 || usedNumbers[num - currentNumber - 1]);
     }
 
-    validMoveExists()
+    validMoveExists(usedNumbers = this.usedNumbers, currentNumber = this.currentNumber)
     {
         for (let i = 0; i < this.maxNumber; i++)
         {
-            if (this.isValid(i))
+            if (this.isValid(i, usedNumbers, currentNumber))
             {
                 return true;
             }
@@ -135,12 +136,84 @@ class Game
 
         if (this.numPlayers === 1 && !this.userTurn)
         {
-
+            const cpuMove = this.optimalMove();
+            setTimeout(() => { this.doMove(cpuMove); }, 1000);
         }
         else
         {
             this.allowInput = true;
         }
+    }
+
+    optimalMove()
+    {
+        let bestMoves = [];
+        let bestScore = -(this.cpuDepth + 1);
+
+        for (let i = 0; i < this.maxNumber; i++)
+        {
+            if (this.isValid(i))
+            {
+                const moveScore = -this.score(this.cpuDepth - 1, ...this.stateAfter(i));
+                if (moveScore >= bestScore)
+                {
+                    if (moveScore > bestScore)
+                    {
+                        bestScore = moveScore;
+                        bestMoves = [];
+                    }
+                    bestMoves.push(i);
+                }
+            }
+        }
+
+        if (bestMoves.length === 0)
+        {
+            return -1;
+        }
+
+        return bestMoves[Math.floor(Math.random() * bestMoves.length)];
+    }
+
+    stateAfter(moveIdx, usedNumbers = this.usedNumbers, currentNumber = this.currentNumber)
+    {
+        let newUsedNumbers = [...usedNumbers];
+        newUsedNumbers[currentNumber - 1] = true;
+        const newCurrentNumber = moveIdx + 1;
+        return [newUsedNumbers, newCurrentNumber];
+    }
+
+    score(depthRemaining, usedNumbers, currentNumber)
+    {
+        if (depthRemaining < 0) { return 0; }
+
+        let bestScore = -(depthRemaining + 1);
+
+        if (depthRemaining === 0)
+        {
+            if (this.validMoveExists(usedNumbers, currentNumber))
+            {
+                return 0;
+            }
+            else
+            {
+                return bestScore;
+            }
+        }
+
+        for (let i = 0; i < this.maxNumber; i++)
+        {
+            if (this.isValid(i, usedNumbers, currentNumber))
+            {
+                const moveScore = -this.score(depthRemaining - 1, ...this.stateAfter(i, usedNumbers, currentNumber));
+                if (moveScore > bestScore)
+                {
+                    bestScore = moveScore;
+                }
+            }
+        }
+
+        return bestScore;
     }
 
     endGame()
