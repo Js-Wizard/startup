@@ -584,25 +584,49 @@ url("https://font-location");
     - Path
     - Parameters
     - Anchor
+  - Request format
+    - Method Path Version
+    - Headers
+    - (blank)
+    - Body
+  - Response format
+    - Version Code Message
+    - Headers
+    - (blank)
+    - Body
   - Methods
     - GET
     - POST
+      - Create resource
     - PUT
       - Updates existing resource
     - DELETE
     - OPTIONS
       - Get info about resource
   - Headers
+    - Host (required)
+      - Domain name of server
+    - Origin
+      - Source of request
+    - Access-Control-Allow-Origin
+      - In response: what origins are allowed by the server
+    - User-Agent
+      - Client application/browser
     - Accept
       - What type of content is expected to be returned (MIME type)
       - */* means any
     - Set-Cookie
       - Create a cookie that can be read at a future point
+    - Cookie
+      - Inform the server about the current state of a cookie
     - Cache-Control
       - Used for cache managment
     - Content-Type
       - Indicates the MIME type of the body
+    - Authorization
+      - Auth token
   - Response codes
+    - 1xx informational
     - 2xx successful
     - 3xx redirect
     - 4xx client error
