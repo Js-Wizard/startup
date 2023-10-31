@@ -664,7 +664,16 @@ url("https://font-location");
   - Built-in packages
     - `http`
       - `createServer`
+        - Takes a function to call for each request, with parameters `req`, `res`
+          - `req`
+          - `res`
+            - `writeHead`
+              - Sets response code (number) and headers (object)
+            - `write`
+              - Writes to response body
       - `<server object>.listen`
+  - Other packages
+    - `express`
   - npm Alternatives
     - Deno
       - Functionality + performance
