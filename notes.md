@@ -569,11 +569,24 @@ url("https://font-location");
       - method (string)
       - headers (object w/ key-value)
       - body (string)
+      - (other options)
 - 3rd-party services
   - Already exist, just use `fetch`
 - Custom services
   - Requires endpoints and implementation on server
   - Can themselves `fetch` from other services
+  - Plan first with sequence diagram
+  - Document with Open API
+  - Uset HTTP verbs properly
+  - Standards
+    - RPC
+      - Remote Procedure Call
+      - Each request calls a function on the server with certain parameters
+    - REST
+      - Representional State Transfer
+      - Requests are restricted to getting, creating, modifying, or deleting specific resources
+    - GraphQL
+      - Data for a single query is transferred in one request
 - HTTP/HTTPS
   - Test requests using `curl`
   - See requests in browser debugger under XHR/Fetch
@@ -631,6 +644,32 @@ url("https://font-location");
     - 3xx redirect
     - 4xx client error
     - 5xx server error
+- Node.js
+  - Setup
+    - Install NVM
+    - `nvm install lts`
+    - `nvm use lts`
+    - In target directory
+      - `npm init`
+      - `npm install <package-name>`
+  - Include in code
+    - `const package = require('package-name');`
+    - `package.func();`
+  - Run code
+    - `node filename.js`
+  - With Git
+    - Add `node_modules` to `.gitignore`'
+  - With VS Code
+    - Press F5 while in js file and select `node.js`
+  - Built-in packages
+    - `http`
+      - `createServer`
+      - `<server object>.listen`
+  - npm Alternatives
+    - Deno
+      - Functionality + performance
+    - Bun
+      - Performance
 
 ## Startup
 
