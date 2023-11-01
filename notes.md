@@ -674,6 +674,22 @@ url("https://font-location");
       - `<server object>.listen`
   - Other packages
     - `express`
+      - Define routes
+        - `app.<method>('url', (req, res, next) => {});`
+        - URL is a matching pattern
+          - Using colon before a parameter in URL makes it a path parameter, retrieved by `req.params.<param>`
+          - Can use wildcards or regular expressions
+      - Middleware functions
+        - Always called for requests
+        - Same structure as routing functions
+        - Call `next` in each
+        - To add to middleware chain: `app.use(<func>());`
+        - Examples
+          - `static`
+            - Responds with static files that match the URL
+        - Error middleware
+          - Also has `err` parameter
+      - Host server using same method as `http` package
   - npm Alternatives
     - Deno
       - Functionality + performance
