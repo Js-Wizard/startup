@@ -661,6 +661,12 @@ url("https://font-location");
     - Add `node_modules` to `.gitignore`'
   - With VS Code
     - Press F5 while in js file and select `node.js`
+    - Can use breakpoints
+    - Variable values on left, or hover
+    - F10: step over
+    - F11: step into
+    - F5: continue
+    - Shift+F5: stop
   - Built-in packages
     - `http`
       - `createServer`
@@ -690,11 +696,58 @@ url("https://font-location");
         - Error middleware
           - Also has `err` parameter
       - Host server using same method as `http` package
+    - `nodemon`
+      - Restart node.js server when changes made
+    - `playwright@latest`
+      - UI tester
+      - Needs extension in VS Code: `Playwright test for VSCode`
+      - For UI testing with other devices, use BrowserStack
+    - `jest`
+      - Endpoint tester
+      - Must have an `index.js` and `server.js` files separately, with `server.js` exporting
+      - Test files have suffix `.test.js`
+      - Requires something like `supertest` to test endpoints
+      - Use `-D` when installing so that it is just a development package
+    - `supertest`
+      - Can make HTTP requests without using network
+      - `request(app)`
+        - `.get` / `.put` / etc
+        - `.expect`
+        - `.end`
   - npm Alternatives
     - Deno
       - Functionality + performance
     - Bun
       - Performance
+
+### PM2
+
+- Process Manager 2
+- Runs services as daemons, provides a way to start and stop them
+- Already installed for this class
+- Useful commands: `pm2 <cmd>`
+  - `ls`
+    - See what services are configured to run
+  - `start`
+    - Add new process (requires additional parameters)
+  - `stop`
+    - Stop process
+  - `restart`
+    - Restart process
+  - `delete`
+    - Stop hosting a process
+  - `save`
+    - Save current processes across reboot
+  - `update`
+    - Restarts pm2
+  - `start env.js --watch --ignore-watch="node_modules"`
+    - Automatically restart when index.js changes
+  - `describe`
+    - Detailed info about process
+- Adding a new service
+  - Add rule to Caddyfile
+  - Create new directory
+  - Configure PM2 to host (`pm2 start -n <name> -- <port>`, `pm2 save`)
 
 ## Startup
 
