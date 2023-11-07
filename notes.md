@@ -658,7 +658,8 @@ url("https://font-location");
   - Run code
     - `node filename.js`
   - With Git
-    - Add `node_modules` to `.gitignore`'
+    - Add `node_modules` to `.gitignore`
+    - When moving to new location, the modules will be specified by `package.json` and their versions by `package_lock.json`
   - With VS Code
     - Press F5 while in js file and select `node.js`
     - Can use breakpoints
@@ -734,6 +735,7 @@ url("https://font-location");
     - Stop process
   - `restart`
     - Restart process
+    - Required if the server code has been updated
   - `delete`
     - Stop hosting a process
   - `save`
