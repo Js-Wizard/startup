@@ -51,7 +51,7 @@ app.listen(port, () => {
 
 function getUserData(user)
 {
-  const userData = playerData[user];
+  let userData = playerData[user];
   if (!userData)
   {
     userData = { wins: 0, losses: 0 };

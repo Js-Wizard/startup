@@ -16,43 +16,46 @@ let dbMock;
 let wins = 0;
 let losses = 0;
 
-if (winText)
+async function initializeUser()
 {
-    dbMock = JSON.parse(localStorage.getItem("db-mock")) ?? {};
-
-    if (uname)
+    if (winText)
     {
-        try
+        dbMock = JSON.parse(localStorage.getItem("db-mock")) ?? {};
+
+        if (uname)
         {
-            const response = await fetch('/api/userData/' + uname);
-            const userData = await response.json();
-            wins = userData.wins;
-            losses = userData.losses;
-            dbMock[uname] = userData;
-            localStorage.setItem("db-mock", JSON.stringify(dbMock));
-        }
-        catch
-        {
-            const userData = dbMock[uname];
-            if (userData)
+            try
             {
+                const response = await fetch('/api/userData/' + uname);
+                const userData = await response.json();
                 wins = userData.wins;
                 losses = userData.losses;
+                dbMock[uname] = userData;
+                localStorage.setItem("db-mock", JSON.stringify(dbMock));
             }
-            else
+            catch
             {
-                dbMock[uname] = { wins: 0, losses: 0 };
+                const userData = dbMock[uname];
+                if (userData)
+                {
+                    wins = userData.wins;
+                    losses = userData.losses;
+                }
+                else
+                {
+                    dbMock[uname] = { wins: 0, losses: 0 };
+                }
             }
         }
-    }
-    else
-    {
-        const guestData = JSON.parse(localStorage.getItem("guest-data")) ?? { wins: 0, losses: 0 };
-        wins = guestData.wins;
-        losses = guestData.losses;
-    }
+        else
+        {
+            const guestData = JSON.parse(localStorage.getItem("guest-data")) ?? { wins: 0, losses: 0 };
+            wins = guestData.wins;
+            losses = guestData.losses;
+        }
 
-    updateUserText();
+        updateUserText();
+    }
 }
 
 function updateUserText()
@@ -126,3 +129,5 @@ function updateUserData()
         localStorage.setItem("guest-data", JSON.stringify({ wins: wins, losses: losses }));
     }
 }
+
+initializeUser();
