@@ -65,5 +65,14 @@ For this deliverable, I added style and formatting to my application using CSS.
 - **Application text content** - Most text is white to stand out against the dark background. Headings have a subtle glow. Player names are coloured cyan, and the number of wins/losses has color as well. The quote uses a Bootstrap-style info box.
 - **Application images** - There was not too much change needed here, but the Fim logo is center-aligned, and I added a glow behind the large version on the login-page.
 
+## JavaScript deliverable
+
+For this deliverable, I completed the game's core functionality and manipulated the DOM for more dynamic content using JavaScript.
+
+- **Login** - When the login or sign up button is pressed, the text in the username field is saved to localStorage and displayed on the home page and play page. If no username is entered, "Guest" is used instead.
+- **Database** - On the play page, an object representing a database is retrieved. When a game is won or lost, the corresponding variable is incremented, the database object is updated, and the data is saved back to localStorage. Each row in the database is simply a username, a wins number, and a losses number. When the page is first loaded, and after every update, the numbers in the top-left are filled with the appropriate values. Guest data is saved for the session but not saved to the database.
+- **WebSocket** - The Live Results on the play page generates random messages which represent the messages coming in from the WebSocket.
+- **Application Logic** - The game works as intended for one or two human players. In one-player mode, an algorithm is run in a web worker to determine the CPU's move. When the game ends, a message is displayed saying who won, and there are options to play again or return to the home page. In-two player mode, both players take turns using the local device. The DOM is manipulated to update the game state. The rules for the game can be found on the how-to-play page.
+
 # Notes for exams
 [Notes](notes.md)

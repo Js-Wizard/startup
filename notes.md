@@ -569,11 +569,24 @@ url("https://font-location");
       - method (string)
       - headers (object w/ key-value)
       - body (string)
+      - (other options)
 - 3rd-party services
   - Already exist, just use `fetch`
 - Custom services
   - Requires endpoints and implementation on server
   - Can themselves `fetch` from other services
+  - Plan first with sequence diagram
+  - Document with Open API
+  - Uset HTTP verbs properly
+  - Standards
+    - RPC
+      - Remote Procedure Call
+      - Each request calls a function on the server with certain parameters
+    - REST
+      - Representional State Transfer
+      - Requests are restricted to getting, creating, modifying, or deleting specific resources
+    - GraphQL
+      - Data for a single query is transferred in one request
 - HTTP/HTTPS
   - Test requests using `curl`
   - See requests in browser debugger under XHR/Fetch
@@ -584,29 +597,197 @@ url("https://font-location");
     - Path
     - Parameters
     - Anchor
+  - Request format
+    - Method Path Version
+    - Headers
+    - (blank)
+    - Body
+  - Response format
+    - Version Code Message
+    - Headers
+    - (blank)
+    - Body
   - Methods
     - GET
     - POST
+      - Create resource
     - PUT
       - Updates existing resource
     - DELETE
     - OPTIONS
       - Get info about resource
   - Headers
+    - Host (required)
+      - Domain name of server
+    - Origin
+      - Source of request
+    - Access-Control-Allow-Origin
+      - In response: what origins are allowed by the server
+    - User-Agent
+      - Client application/browser
     - Accept
       - What type of content is expected to be returned (MIME type)
       - */* means any
     - Set-Cookie
       - Create a cookie that can be read at a future point
+    - Cookie
+      - Inform the server about the current state of a cookie
     - Cache-Control
       - Used for cache managment
     - Content-Type
       - Indicates the MIME type of the body
+    - Authorization
+      - Auth token
   - Response codes
+    - 1xx informational
     - 2xx successful
     - 3xx redirect
     - 4xx client error
     - 5xx server error
+- Node.js
+  - Setup
+    - Install NVM
+    - `nvm install lts`
+    - `nvm use lts`
+    - In target directory
+      - `npm init`
+      - `npm install <package-name>`
+  - Include in code
+    - `const package = require('package-name');`
+    - `package.func();`
+  - Run code
+    - `node filename.js`
+  - With Git
+    - Add `node_modules` to `.gitignore`
+    - When moving to new location, the modules will be specified by `package.json` and their versions by `package_lock.json`
+  - With VS Code
+    - Press F5 while in js file and select `node.js`
+    - Can use breakpoints
+    - Variable values on left, or hover
+    - F10: step over
+    - F11: step into
+    - F5: continue
+    - Shift+F5: stop
+  - Built-in packages
+    - `http`
+      - `createServer`
+        - Takes a function to call for each request, with parameters `req`, `res`
+          - `req`
+          - `res`
+            - `writeHead`
+              - Sets response code (number) and headers (object)
+            - `write`
+              - Writes to response body
+      - `<server object>.listen`
+  - Other packages
+    - `express`
+      - Define routes
+        - `app.<method>('url', (req, res, next) => {});`
+        - URL is a matching pattern
+          - Using colon before a parameter in URL makes it a path parameter, retrieved by `req.params.<param>`
+          - Can use wildcards or regular expressions
+      - Middleware functions
+        - Always called for requests
+        - Same structure as routing functions
+        - Call `next` in each
+        - To add to middleware chain: `app.use(<func>());`
+        - Examples
+          - `static`
+            - Responds with static files that match the URL
+        - Error middleware
+          - Also has `err` parameter
+      - Host server using same method as `http` package
+    - `nodemon`
+      - Restart node.js server when changes made
+    - `playwright@latest`
+      - UI tester
+      - Needs extension in VS Code: `Playwright test for VSCode`
+      - For UI testing with other devices, use BrowserStack
+    - `jest`
+      - Endpoint tester
+      - Must have an `index.js` and `server.js` files separately, with `server.js` exporting
+      - Test files have suffix `.test.js`
+      - Requires something like `supertest` to test endpoints
+      - Use `-D` when installing so that it is just a development package
+    - `supertest`
+      - Can make HTTP requests without using network
+      - `request(app)`
+        - `.get` / `.put` / etc
+        - `.expect`
+        - `.end`
+  - npm Alternatives
+    - Deno
+      - Functionality + performance
+    - Bun
+      - Performance
+
+### PM2
+
+- Process Manager 2
+- Runs services as daemons, provides a way to start and stop them
+- Already installed for this class
+- Useful commands: `pm2 <cmd>`
+  - `ls`
+    - See what services are configured to run
+  - `start`
+    - Add new process (requires additional parameters)
+  - `stop`
+    - Stop process
+  - `restart`
+    - Restart process
+    - Required if the server code has been updated
+  - `delete`
+    - Stop hosting a process
+  - `save`
+    - Save current processes across reboot
+  - `update`
+    - Restarts pm2
+  - `start env.js --watch --ignore-watch="node_modules"`
+    - Automatically restart when index.js changes
+  - `describe`
+    - Detailed info about process
+- Adding a new service
+  - Add rule to Caddyfile
+  - Create new directory
+  - Configure PM2 to host (`pm2 start -n <name> -- <port>`, `pm2 save`)
+
+### Databases
+
+- Persistenet backend storage
+- Services
+  - MySQL
+    - Relational queries
+  - MongoDB
+    - JSON objects
+    - Schema-free (unlike SQL)
+    - Best for small amounts of data
+    - How to use
+      - Sign up
+        - MongoDB Atlas account
+        - Has free version
+      - Store credentials in json file `dbconfig.json`
+        - Put in .gitignore
+      - Setup
+        - Import: `const { MongoClient } = require('mongodb');`
+        - `const cfg = require('./dbConfig.json');`
+      - Test connection
+      - Interact
+        - Query
+          - `db.collection.find(query, options)`
+            - query: object whose attributes match the desired results
+              - `$gt`: greater than
+            - options: object with optional attributes for sorting, limiting, etc
+        - Insert
+          - `db.collection.insertOne(obj)`
+          - `db.collection.insertMany(arr)`
+- Authentication
+  - Send POST request to login, with username and password in body
+  - Respond with token
+  - Use token to authorize future requests
+  - Security
+    - Passwords not sstored as plaintext
+    - Only their hashed values are stored
+    - "Salt" can be added to improve security
 
 ## Startup
 
