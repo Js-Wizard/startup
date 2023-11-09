@@ -9,7 +9,7 @@ function displayQuote() {
         authorEl.id = 'author';
   
         quoteEl.textContent = data.content;
-        authorEl.textContent = data.author;
+        authorEl.textContent = '- ' + data.author;
   
         containerEl.innerHTML = '';
         containerEl.appendChild(quoteEl);
