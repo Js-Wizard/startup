@@ -49,9 +49,9 @@ function updateUserText()
     lossText.textContent = losses;
 }
 
-async function lose()
+async function win()
 {
-    losses++;
+    wins++;
     if (uname)
     {
         await onlineWin();
