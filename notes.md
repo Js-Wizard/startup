@@ -751,6 +751,43 @@ url("https://font-location");
   - Create new directory
   - Configure PM2 to host (`pm2 start -n <name> -- <port>`, `pm2 save`)
 
+### Databases
+- Persistenet backend storage
+- Services
+  - MySQL
+    - Relational queries
+  - MongoDB
+    - JSON objects
+    - Schema-free (unlike SQL)
+    - Best for small amounts of data
+    - How to use
+      - Sign up
+        - MongoDB Atlas account
+        - Has free version
+      - Store credentials in json file `dbconfig.json`
+        - Put in .gitignore
+      - Setup
+        - Import: `const { MongoClient } = require('mongodb');`
+        - `const cfg = require('./dbConfig.json');`
+      - Test connection
+      - Interact
+        - Query
+          - `db.collection.find(query, options)`
+            - query: object whose attributes match the desired results
+              - `$gt`: greater than
+            - options: object with optional attributes for sorting, limiting, etc
+        - Insert
+          - `db.collection.insertOne(obj)`
+          - `db.collection.insertMany(arr)`
+- Authentication
+  - Send POST request to login, with username and password in body
+  - Respond with token
+  - Use token to authorize future requests
+  - Security
+    - Passwords not sstored as plaintext
+    - Only their hashed values are stored
+    - "Salt" can be added to improve security
+
 ## Startup
 
 - Access
