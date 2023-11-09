@@ -49,18 +49,56 @@ function updateUserText()
     lossText.textContent = losses;
 }
 
-function win()
+async function lose()
 {
-    wins++;
+    losses++;
+    if (uname)
+    {
+        await onlineWin();
+    }
     updateUserData();
     updateUserText();
 }
 
-function lose()
+async function lose()
 {
     losses++;
+    if (uname)
+    {
+        await onlineLose();
+    }
     updateUserData();
     updateUserText();
+}
+
+async function onlineWin()
+{
+    try
+    {
+        await fetch('/api/userData/' + uname + '/win', { method: 'PUT' });
+        const userData = await response.json();
+        wins = userData.wins;
+        losses = userData.losses;
+    }
+    catch
+    {
+        return;
+    }
+}
+
+async function onlineLose()
+{
+    try
+    {
+        await fetch('/api/userData/' + uname + '/lose', { method: 'PUT' });
+        const userData = await response.json();
+        wins = userData.wins;
+        losses = userData.losses;
+    }
+    catch
+    {
+        return;
+    }
 }
 
 function updateUserData()
