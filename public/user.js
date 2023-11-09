@@ -22,15 +22,27 @@ if (winText)
 
     if (uname)
     {
-        const userData = dbMock[uname];
-        if (userData)
+        try
         {
+            const response = await fetch('/api/userData/' + uname);
+            const userData = await response.json();
             wins = userData.wins;
             losses = userData.losses;
+            dbMock[uname] = userData;
+            localStorage.setItem("db-mock", JSON.stringify(dbMock));
         }
-        else
+        catch
         {
-            dbMock[uname] = { wins: 0, losses: 0 };
+            const userData = dbMock[uname];
+            if (userData)
+            {
+                wins = userData.wins;
+                losses = userData.losses;
+            }
+            else
+            {
+                dbMock[uname] = { wins: 0, losses: 0 };
+            }
         }
     }
     else
@@ -75,7 +87,7 @@ async function onlineWin()
 {
     try
     {
-        await fetch('/api/userData/' + uname + '/win', { method: 'PUT' });
+        const response = await fetch('/api/userData/' + uname + '/win', { method: 'PUT' });
         const userData = await response.json();
         wins = userData.wins;
         losses = userData.losses;
@@ -90,7 +102,7 @@ async function onlineLose()
 {
     try
     {
-        await fetch('/api/userData/' + uname + '/lose', { method: 'PUT' });
+        const response = await fetch('/api/userData/' + uname + '/lose', { method: 'PUT' });
         const userData = await response.json();
         wins = userData.wins;
         losses = userData.losses;
