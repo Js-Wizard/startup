@@ -74,5 +74,13 @@ For this deliverable, I completed the game's core functionality and manipulated 
 - **WebSocket** - The Live Results on the play page generates random messages which represent the messages coming in from the WebSocket.
 - **Application Logic** - The game works as intended for one or two human players. In one-player mode, an algorithm is run in a web worker to determine the CPU's move. When the game ends, a message is displayed saying who won, and there are options to play again or return to the home page. In-two player mode, both players take turns using the local device. The DOM is manipulated to update the game state. The rules for the game can be found on the how-to-play page.
 
+## Service deliverable
+
+- **HTTP service with Node.js and Express** - The `index.js` file uses the Express package installed with npm.
+- **Frontend served using Express static middleware** - The `public` directory contains the frontend files, which are served using the line `app.use(express.static('public'));`.
+- **Frontend calls 3rd party service endpoints** - A random quote is obtained with a `fetch` command and placed in the how-to-play page.
+- **Backend provides service endpoints** - There are api endpoints in the backend for getting a user's current wins/losses and notifying the server of a win or loss.
+- **Frontend calls service endpoints** - When the game page is loaded, the wins and losses are initialized from a GET request to the server, and when the user wins or loses, a PUT request is sent to the server to make the corresponding change. When the server is unavailable, localStorage is used.
+
 # Notes for exams
 [Notes](notes.md)
