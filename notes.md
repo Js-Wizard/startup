@@ -785,9 +785,21 @@ url("https://font-location");
   - Respond with token
   - Use token to authorize future requests
   - Security
-    - Passwords not sstored as plaintext
+    - Passwords not stored as plaintext
     - Only their hashed values are stored
     - "Salt" can be added to improve security
+
+### WebSocket
+
+- Include with `require('ws');`
+- Create `new WebSocketServer({ port: # });`
+- Attach listener
+  - `wss.on('connection', (ws) => { ... });` for initialization
+  - `ws.on('message', (data) => { ... });` for handling on server
+- Client
+  - Create `new WebSocket('ws://localhost:9900')`
+  - Listener
+    - `socket.onmessage = (event) => { ... };`
 
 ## Startup
 
