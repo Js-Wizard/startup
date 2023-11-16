@@ -807,6 +807,23 @@ url("https://font-location");
   - Create `new WebSocket('ws://localhost:9900')`
   - Listener
     - `socket.onmessage = (event) => { ... };`
+   
+### Web Frameworks
+
+- Simplify common patterns
+- Improve performance
+- Increase device coverage
+- React
+  - Current most popular framework
+  - JSX
+    - Combines Javascript and HTML
+    - Write in JSX, which has both syntaxes
+    - Babel converts to JavaScript
+    - Can use in CodePen by specifying Babel as a preprocessor
+  - Uses a single, page, where components come in and out depending on the current state
+  - Components are basically custon elements
+    - Make a function that returns HTML
+    - Use the name of the function as a tag
 
 ## Startup
 
