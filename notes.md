@@ -768,15 +768,22 @@ url("https://font-location");
       - Store credentials in json file `dbconfig.json`
         - Put in .gitignore
       - Setup
+        - `npm install mongodb`
         - Import: `const { MongoClient } = require('mongodb');`
         - `const cfg = require('./dbConfig.json');`
-      - Test connection
+      - Connect
+        - ``const url = `mongodb+srv://{userName}:${password}@${hostname}`;``
+        - `const client = new MongoClient(url);`
+        - `const collection = client.db('dbName').collection('collectionName');`
       - Interact
         - Query
           - `db.collection.find(query, options)`
             - query: object whose attributes match the desired results
               - `$gt`: greater than
+              - `$lt`: less than
             - options: object with optional attributes for sorting, limiting, etc
+              - sort
+              - limit
         - Insert
           - `db.collection.insertOne(obj)`
           - `db.collection.insertMany(arr)`
