@@ -34,7 +34,7 @@ apiRouter.put('/userData/:user/lose', (req, res) => {
   const userData = getUserData(req.params.user);
   userData.losses++;
   res.send(userData);
-})
+});
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
