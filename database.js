@@ -49,4 +49,4 @@ function getUserData(user) {
     return userData;
 }
 
-module.exports = { addScore, getUserData };
+module.exports = { addWin, addLoss, getUserData };

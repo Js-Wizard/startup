@@ -15,25 +15,21 @@ app.use(express.static('public'));
 const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
-let playerData = {};
-
 // Get data for user
 apiRouter.get('/userData/:user', (req, res) => {
-  const userData = getUserData(req.params.user)
+  const userData = DB.getUserData(req.params.user)
   res.send(userData);
 });
 
 // Record user win
 apiRouter.put('/userData/:user/win', (req, res) => {
-  const userData = getUserData(req.params.user);
-  userData.wins++;
+  const userData = DB.addWin(req.params.user);
   res.send(userData);
 });
 
 // Record user loss
 apiRouter.put('/userData/:user/lose', (req, res) => {
-  const userData = getUserData(req.params.user);
-  userData.losses++;
+  const userData = DB.addLoss(req.params.user);
   res.send(userData);
 });
 
@@ -45,19 +41,3 @@ app.use((_req, res) => {
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
-
-
-
-
-
-function getUserData(user)
-{
-  let userData = playerData[user];
-  if (!userData)
-  {
-    userData = { wins: 0, losses: 0 };
-    playerData[user] = userData;
-  }
-
-  return userData;
-}
