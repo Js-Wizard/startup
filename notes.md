@@ -768,15 +768,22 @@ url("https://font-location");
       - Store credentials in json file `dbconfig.json`
         - Put in .gitignore
       - Setup
+        - `npm install mongodb`
         - Import: `const { MongoClient } = require('mongodb');`
         - `const cfg = require('./dbConfig.json');`
-      - Test connection
+      - Connect
+        - ``const url = `mongodb+srv://{userName}:${password}@${hostname}`;``
+        - `const client = new MongoClient(url);`
+        - `const collection = client.db('dbName').collection('collectionName');`
       - Interact
         - Query
           - `db.collection.find(query, options)`
             - query: object whose attributes match the desired results
               - `$gt`: greater than
+              - `$lt`: less than
             - options: object with optional attributes for sorting, limiting, etc
+              - sort
+              - limit
         - Insert
           - `db.collection.insertOne(obj)`
           - `db.collection.insertMany(arr)`
@@ -785,9 +792,38 @@ url("https://font-location");
   - Respond with token
   - Use token to authorize future requests
   - Security
-    - Passwords not sstored as plaintext
+    - Passwords not stored as plaintext
     - Only their hashed values are stored
     - "Salt" can be added to improve security
+
+### WebSocket
+
+- Include with `require('ws');`
+- Create `new WebSocketServer({ port: # });`
+- Attach listener
+  - `wss.on('connection', (ws) => { ... });` for initialization
+  - `ws.on('message', (data) => { ... });` for handling on server
+- Client
+  - Create `new WebSocket('ws://localhost:9900')`
+  - Listener
+    - `socket.onmessage = (event) => { ... };`
+   
+### Web Frameworks
+
+- Simplify common patterns
+- Improve performance
+- Increase device coverage
+- React
+  - Current most popular framework
+  - JSX
+    - Combines Javascript and HTML
+    - Write in JSX, which has both syntaxes
+    - Babel converts to JavaScript
+    - Can use in CodePen by specifying Babel as a preprocessor
+  - Uses a single, page, where components come in and out depending on the current state
+  - Components are basically custon elements
+    - Make a function that returns HTML
+    - Use the name of the function as a tag
 
 ## Startup
 
