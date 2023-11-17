@@ -71,30 +71,73 @@ apiRouter.get('/user/:name', async (req, res) => {
 
 
 
+// secureApiRouter verifies credentials for endpoints
+const secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+  authToken = req.cookies[authCookieName];
+  const user = await DB.getUserByToken(authToken);
+  if (user) {
+    res.locals.user = user.name;
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+});
 
 
 // Get stats for user
-apiRouter.get('/userData/:user', async (req, res) => {
+secureApiRouter.get('/userData/:user', async (req, res) => {
   const userData = await DB.getUserData(req.params.user)
   res.send(userData);
 });
 
 // Record user win
-apiRouter.put('/userData/:user/win', async (req, res) => {
-  const userData = await DB.addWin(req.params.user);
-  res.send(userData);
+secureApiRouter.put('/userData/:user/win', async (req, res) => {
+  if (req.params.user === res.locals.user)
+  {
+    const userData = await DB.addWin(req.params.user);
+    res.send(userData);
+  }
+  else
+  {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
 });
 
 // Record user loss
-apiRouter.put('/userData/:user/lose', async (req, res) => {
-  const userData = await DB.addLoss(req.params.user);
-  res.send(userData);
+secureApiRouter.put('/userData/:user/lose', async (req, res) => {
+  if (req.params.user === res.locals.user)
+  {
+    const userData = await DB.addLoss(req.params.user);
+    res.send(userData);
+  }
+  else
+  {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+});
+
+// Default error handler
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
 });
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 });
+
+
+// setAuthCookie in the HTTP response
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
