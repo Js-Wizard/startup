@@ -74,4 +74,4 @@ async function getUserData(user) {
     return userData;
 }
 
-module.exports = { addWin, addLoss, getUserData };
+module.exports = { getUser, createUser, addWin, addLoss, getUserData };
