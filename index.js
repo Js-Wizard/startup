@@ -16,20 +16,20 @@ const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 // Get data for user
-apiRouter.get('/userData/:user', (req, res) => {
-  const userData = DB.getUserData(req.params.user)
+apiRouter.get('/userData/:user', async (req, res) => {
+  const userData = await DB.getUserData(req.params.user)
   res.send(userData);
 });
 
 // Record user win
-apiRouter.put('/userData/:user/win', (req, res) => {
-  const userData = DB.addWin(req.params.user);
+apiRouter.put('/userData/:user/win', async (req, res) => {
+  const userData = await DB.addWin(req.params.user);
   res.send(userData);
 });
 
 // Record user loss
-apiRouter.put('/userData/:user/lose', (req, res) => {
-  const userData = DB.addLoss(req.params.user);
+apiRouter.put('/userData/:user/lose', async (req, res) => {
+  const userData = await DB.addLoss(req.params.user);
   res.send(userData);
 });
 

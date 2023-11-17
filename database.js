@@ -15,31 +15,31 @@ const statsCollection = db.collection('userStats');
     process.exit(1);
 });
 
-function addWin(user)
+async function addWin(user)
 {
-    let userData = getUserData(user);
+    let userData = await getUserData(user);
     statsCollection.updateOne({ user: user }, { $inc: { wins: 1 } });
     userData.wins++;
     return userData;
 }
 
-function addLoss(user)
+async function addLoss(user)
 {
-    let userData = getUserData(user);
+    let userData = await getUserData(user);
     statsCollection.updateOne({ user: user }, { $inc: { losses: 1 } });
     userData.losses++;
     return userData;
 }
 
-function getUserData(user) {
-    const cursor = statsCollection.find({ user: user });
-    const results = cursor.toArray();
+async function getUserData(user) {
+    const cursor = await statsCollection.find({ user: user });
+    const results = await cursor.toArray();
 
     let userData;
     if (results.length == 0)
     {
-        userData = { wins: 0, losses: 0 };
-        statsCollection.insertOne({ user: user, wins: 0, losses: 0 });
+        userData = { user: user, wins: 0, losses: 0 };
+        await statsCollection.insertOne(userData);
     }
     else
     {
