@@ -795,6 +795,13 @@ url("https://font-location");
     - Passwords not stored as plaintext
     - Only their hashed values are stored
     - "Salt" can be added to improve security
+    - Cookies sent with following requirements
+      - `secure: true`
+        - Only send through HTTPS
+      - `httpOnly: true`
+        - Don't let JS access it
+      - `sameSite: 'strict'`
+        - Don't send to other sites
 
 ### WebSocket
 
