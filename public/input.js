@@ -1,9 +1,44 @@
-function login()
-{
+async function loginUser() {
+    loginOrCreate(`/api/auth/login`);
+}
+
+async function createUser() {
+    loginOrCreate(`/api/auth/create`);
+}
+
+async function loginOrCreate(endpoint) {
     const nameEl = document.getElementById("username");
-    localStorage.setItem("user", nameEl.value);
-    localStorage.removeItem("guest-data");
-    window.location.href = "home.html";
+    const pwEl = document.getElementById("password");
+
+    const name = nameEl.value;
+    const password = pwEl.value;
+
+    if (name === "")
+    {
+        localStorage.setItem("user", name);
+        window.location.href = "home.html";
+        return;
+    }
+
+    const response = await fetch(endpoint, {
+        method: 'post',
+        body: JSON.stringify({ name: name, password: password }),
+        headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    if (response.ok) {
+        localStorage.setItem("user", name);
+        localStorage.removeItem("guest-data");
+        window.location.href = "home.html";
+    } else {
+        const body = await response.json();
+        const modalEl = document.querySelector('#msgModal');
+        modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
+        const msgModal = new bootstrap.Modal(modalEl, {});
+        msgModal.show();
+    }
 }
 
 function play1p()
