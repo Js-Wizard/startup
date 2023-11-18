@@ -92,5 +92,14 @@ For this deliverable, I configured the backend to interact with a MongoDB databa
 - **Backend endpoints for manipulating application data** - This is done similarly to the service deliverable, except now the endpoints work by interacting with the database.
 - **Stores application data in MongoDB** - There is a userStats collection in MongoDB that stores objects containing a username, number of wins, and number of losses.
 
+## Login deliverable
+
+For this deliverable, I added the ability to log in to the application with credentials that are securely stored in a database.
+
+- **Supports new user registration** - The Sign Up button registers a new user.
+- **Supports existing user authentication** - The Log In button authenticates an existing user.
+- **Stores and retrieves credentials in MongoDB** - The server encrypts the password and stores credentials in a user collection, and data can be retrieved from the userData collection.
+- **Restricts functionality based upon authentication** - User data can only be requested by authenticated users, and users can only modify their own data. A user cannot tell the server to record a win or loss for a different user.
+
 # Notes for exams
 [Notes](notes.md)
