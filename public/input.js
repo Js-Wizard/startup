@@ -41,6 +41,14 @@ async function loginOrCreate(endpoint) {
     }
 }
 
+function logout()
+{
+    localStorage.removeItem('user');
+    fetch(`/api/auth/logout`, {
+        method: 'delete',
+    }).then(() => (window.location.href = '/'));
+}
+
 function play1p()
 {
     localStorage.setItem("player-count", 1);
