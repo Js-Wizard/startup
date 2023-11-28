@@ -814,6 +814,8 @@ url("https://font-location");
   - Create `new WebSocket('ws://localhost:9900')`
   - Listener
     - `socket.onmessage = (event) => { ... };`
+- Upgrade
+  - Goes from client-server (HTTP) to peer-to-peer (websocket)
    
 ### Web Frameworks
 
@@ -827,10 +829,15 @@ url("https://font-location");
     - Write in JSX, which has both syntaxes
     - Babel converts to JavaScript
     - Can use in CodePen by specifying Babel as a preprocessor
-  - Uses a single, page, where components come in and out depending on the current state
+  - Uses a single page, where components come in and out depending on the current state
   - Components are basically custon elements
     - Make a function that returns HTML
     - Use the name of the function as a tag
+- Vite (toolchain to build for React)
+  - Builds application using Babel
+  - Compresses JS to make it run faster, using Minify JS
+  - `npm run build`: makes index.html
+  - `npm run dev`: runs a debug server
 
 ## Startup
 
