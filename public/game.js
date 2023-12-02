@@ -168,13 +168,19 @@ class Game
         {
             this.gameText.style = "color: green; text-shadow: 0px 0px 3px green;";
             win();
-            this.broadcastEvent(this.userName, WinEvent, this.turnNumber);
+            if (this.userName != "Player 1")
+            {
+                this.broadcastEvent(this.userName, WinEvent, this.turnNumber);
+            }
         }
         else
         {
             this.gameText.style = "color: red; text-shadow: 0px 0px 3px red;";
             lose();
-            this.broadcastEvent(this.userName, LossEvent, 0);
+            if (this.userName != "Player 1")
+            {
+                this.broadcastEvent(this.userName, LossEvent, 0);
+            }
         }
 
         this.options.style = "display: block";
