@@ -62,6 +62,10 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
       - `curl -v` will show TLS handshake
     - TLS
       - Wrapper for transport layer that encrypts sent data
+    - WS
+      - WebSocket protocol, on top of HTTP protocol
+    - WSS
+      - Secure websocket protocol, on top of HTTPS
 
 ## Tools
 
@@ -805,7 +809,7 @@ url("https://font-location");
 
 ### WebSocket
 
-- Include with `require('ws');`
+- Include with `const { WebSocketServer } = require('ws');`
 - Create `new WebSocketServer({ port: # });`
 - Attach listener
   - `wss.on('connection', (ws) => { ... });` for initialization
@@ -814,6 +818,11 @@ url("https://font-location");
   - Create `new WebSocket('ws://localhost:9900')`
   - Listener
     - `socket.onmessage = (event) => { ... };`
+- Upgrade
+  - Goes from client-server (HTTP) to peer-to-peer (websocket)
+  - Handle from existing server
+    - Use `new WebSocketServer({ noServer: true });` instead
+    - `server.on('upgrade', (request, socket, head) => { wss.handleUpgrade(request, socket, head, (ws) => { wss.emit('connection', ws, request); }) }`
    
 ### Web Frameworks
 
@@ -827,10 +836,15 @@ url("https://font-location");
     - Write in JSX, which has both syntaxes
     - Babel converts to JavaScript
     - Can use in CodePen by specifying Babel as a preprocessor
-  - Uses a single, page, where components come in and out depending on the current state
+  - Uses a single page, where components come in and out depending on the current state
   - Components are basically custon elements
     - Make a function that returns HTML
     - Use the name of the function as a tag
+- Vite (toolchain to build for React)
+  - Builds application using Babel
+  - Compresses JS to make it run faster, using Minify JS
+  - `npm run build`: makes index.html
+  - `npm run dev`: runs a debug server
 
 ## Startup
 
