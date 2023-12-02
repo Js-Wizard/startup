@@ -41,6 +41,7 @@ class Game
         this.updateText();
         this.updateBoard();
         this.allowInput = true;
+        this.turnNumber = 0;
     }
 
     updateText()
@@ -113,6 +114,10 @@ class Game
         this.allowInput = false;
         this.usedNumbers[this.currentNumber - 1] = true;
         this.currentNumber = idx + 1;
+        if (this.userTurn)
+        {
+            this.turnNumber++;
+        }
         this.userTurn = !this.userTurn;
 
         this.updateText();
@@ -163,11 +168,13 @@ class Game
         {
             this.gameText.style = "color: green; text-shadow: 0px 0px 3px green;";
             win();
+            this.broadcastEvent(this.userName, WinEvent, this.turnNumber);
         }
         else
         {
             this.gameText.style = "color: red; text-shadow: 0px 0px 3px red;";
             lose();
+            this.broadcastEvent(this.userName, LossEvent, 0);
         }
 
         this.options.style = "display: block";
@@ -192,7 +199,7 @@ class Game
       displayMsg(from, msg) {
         const logText = document.querySelector('.log');
         logText.innerHTML =
-        `<li><span class="player-name">${from}</span> ${msg}</li>`; + chatText.innerHTML;
+        `<li><span class="player-name">${from}</span> ${msg}</li>` + logText.innerHTML;
       }
     
       broadcastEvent(from, type, value) {
