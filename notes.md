@@ -62,6 +62,10 @@ GitHub .md files use _markdown_, which is syntax to represent visual elements ap
       - `curl -v` will show TLS handshake
     - TLS
       - Wrapper for transport layer that encrypts sent data
+    - WS
+      - WebSocket protocol, on top of HTTP protocol
+    - WSS
+      - Secure websocket protocol, on top of HTTPS
 
 ## Tools
 
@@ -805,7 +809,7 @@ url("https://font-location");
 
 ### WebSocket
 
-- Include with `require('ws');`
+- Include with `const { WebSocketServer } = require('ws');`
 - Create `new WebSocketServer({ port: # });`
 - Attach listener
   - `wss.on('connection', (ws) => { ... });` for initialization
@@ -816,6 +820,9 @@ url("https://font-location");
     - `socket.onmessage = (event) => { ... };`
 - Upgrade
   - Goes from client-server (HTTP) to peer-to-peer (websocket)
+  - Handle from existing server
+    - Use `new WebSocketServer({ noServer: true });` instead
+    - `server.on('upgrade', (request, socket, head) => { wss.handleUpgrade(request, socket, head, (ws) => { wss.emit('connection', ws, request); }) }`
    
 ### Web Frameworks
 
