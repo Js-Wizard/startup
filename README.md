@@ -108,7 +108,7 @@ For this deliverable, I added a WebSocket to both the client and server and comp
 - **Backend listens for WebSocket connection** - This is done using the ws package.
 - **Frontend makes WebSocket connection** - This is done with the WebSocket class.
 - **Data sent over WebSocket connection** - When the client finishes a game, it sends a message to the server, and then the server sends the data to all connected clients.
-- **WebSocket data displayed in the application interface** When a cilent receives a message, it adds a new message to the Live Results interface.
+- **WebSocket data displayed in the application interface** - When a cilent receives a message, it adds a new message to the Live Results interface.
 
 # Notes for exams
 [Notes](notes.md)
