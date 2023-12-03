@@ -101,5 +101,14 @@ For this deliverable, I added the ability to log in to the application with cred
 - **Stores and retrieves credentials in MongoDB** - The server encrypts the password and stores credentials in a user collection, and data can be retrieved from the userData collection.
 - **Restricts functionality based upon authentication** - User data can only be requested by authenticated users, and users can only modify their own data. A user cannot tell the server to record a win or loss for a different user.
 
+## WebSocket deliverable
+
+For this deliverable, I added a WebSocket to both the client and server and completed the Live Results functionality.
+
+- **Backend listens for WebSocket connection** - This is done using the ws package.
+- **Frontend makes WebSocket connection** - This is done with the WebSocket class.
+- **Data sent over WebSocket connection** - When the client finishes a game, it sends a message to the server, and then the server sends the data to all connected clients.
+- **WebSocket data displayed in the application interface** When a cilent receives a message, it adds a new message to the Live Results interface.
+
 # Notes for exams
 [Notes](notes.md)
