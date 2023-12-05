@@ -840,6 +840,7 @@ url("https://font-location");
   - Components are basically custon elements
     - Make a function that returns HTML
     - Use the name of the function as a tag
+    - Function can use `props` argument which represents the HTML attributes
 - Vite (toolchain to build for React)
   - Builds application using Babel
   - Compresses JS to make it run faster, using Minify JS
