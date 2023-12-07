@@ -837,10 +837,26 @@ url("https://font-location");
     - Babel converts to JavaScript
     - Can use in CodePen by specifying Babel as a preprocessor
   - Uses a single page, where components come in and out depending on the current state
-  - Components are basically custon elements
+  - Components
+    - Basically custom elements
     - Make a function that returns HTML
     - Use the name of the function as a tag
     - Function can use `props` argument which represents the HTML attributes
+  - Converting to React
+    - Clone original repository
+    - Copy db config
+    - Restructure directories
+    - Initialize Vite
+    - Install React and React Bootstrap
+    - Create App component
+    - Create view component stubs
+    - Create BrowserRouter
+    - Convert frontend code into view components
+      - Convert HTML-manipulating code to to JSX HTML
+      - Put main HTML into return statement
+      - Use `React.useEffect` for code to run after render, such as database fetches
+        - Second argument says which states it depends on for rerendering
+      - Build varying elements based on state variables, then change state variables to update the element
 - Vite (toolchain to build for React)
   - Builds application using Babel
   - Compresses JS to make it run faster, using Minify JS
