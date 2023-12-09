@@ -861,6 +861,12 @@ url("https://font-location");
         - Empty array means it only runs once
       - Return value can be a "cleanup" function that is called even if the component is not rendered
     - Hooks cannot be inside loop, conditional, or sub-function
+  - Routing
+    - Using `react-router-dom` version 6
+    - Surround entire app in `<BrowserRouter>`
+    - `<NavLink>` or `<Link>` to link to routes
+    - `<Routes>` for list of routes
+    - `<Route>` for a route
   - Use `map` to create an array of React elements from an array of data
   - Converting to React
     - Clone original repository
