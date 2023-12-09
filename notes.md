@@ -836,12 +836,22 @@ url("https://font-location");
     - Write in JSX, which has both syntaxes
     - Babel converts to JavaScript
     - Can use in CodePen by specifying Babel as a preprocessor
+    - Must use `{}` within HTML in order to use variables/functions/expressions from JS
   - Uses a single page, where components come in and out depending on the current state
   - Components
     - Basically custom elements
     - Make a function that returns HTML
+      - The HTML must be one element; if you want multiple, enclose in `<></>` to make a fragment
     - Use the name of the function as a tag
     - Function can use `props` argument which represents the HTML attributes
+      - Use `{ arg1, arg2 }` in place of props to automatically assign them to variables
+  - State
+    - `import {useState} from 'react';`
+    - `const [value, setValue] = useState(initialValue);`
+    - `value` gets the current value
+    - `setValue` is a function to change the value
+    - If state is needed by parent, have it controlled by the parent instead
+  - Use `map` to create an array of React elements from an array of data
   - Converting to React
     - Clone original repository
     - Copy db config
