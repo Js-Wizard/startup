@@ -851,6 +851,16 @@ url("https://font-location");
     - `value` gets the current value
     - `setValue` is a function to change the value
     - If state is needed by parent, have it controlled by the parent instead
+  - Rendering
+    - Components will re-render when a state they depend on is changed (including props)
+    - Rendering happens asynchronously
+  - Hooks
+    - `useState`: Creates getter and setter for a state
+    - `useEffect`: Runs code after each render
+      - Second optional argument is the dependencies, which is a list of states, of which one must be changed in order for the function to trigger
+        - Empty array means it only runs once
+      - Return value can be a "cleanup" function that is called even if the component is not rendered
+    - Hooks cannot be inside loop, conditional, or sub-function
   - Use `map` to create an array of React elements from an array of data
   - Converting to React
     - Clone original repository
