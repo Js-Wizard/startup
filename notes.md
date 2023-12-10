@@ -869,7 +869,6 @@ url("https://font-location");
     - `<Route>` for a route
   - Use `map` to create an array of React elements from an array of data
   - Converting to React
-    - Clone original repository
     - Copy db config
     - Restructure directories
     - Initialize Vite
