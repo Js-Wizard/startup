@@ -2,7 +2,7 @@ import React from 'react';
 
 export function HowToPlay() {
   return (
-    <main className='container-fluid bg-secondary text-center'>
+    <main>
       <div>how-to-play displayed here</div>
     </main>
   );
