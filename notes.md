@@ -836,10 +836,52 @@ url("https://font-location");
     - Write in JSX, which has both syntaxes
     - Babel converts to JavaScript
     - Can use in CodePen by specifying Babel as a preprocessor
+    - Must use `{}` within HTML in order to use variables/functions/expressions from JS
   - Uses a single page, where components come in and out depending on the current state
-  - Components are basically custon elements
+  - Components
+    - Basically custom elements
     - Make a function that returns HTML
+      - The HTML must be one element; if you want multiple, enclose in `<></>` to make a fragment
     - Use the name of the function as a tag
+    - Function can use `props` argument which represents the HTML attributes
+      - Use `{ arg1, arg2 }` in place of props to automatically assign them to variables
+  - State
+    - `import {useState} from 'react';`
+    - `const [value, setValue] = useState(initialValue);`
+    - `value` gets the current value
+    - `setValue` is a function to change the value
+    - If state is needed by parent, have it controlled by the parent instead
+  - Rendering
+    - Components will re-render when a state they depend on is changed (including props)
+    - Rendering happens asynchronously
+  - Hooks
+    - `useState`: Creates getter and setter for a state
+    - `useEffect`: Runs code after each render
+      - Second optional argument is the dependencies, which is a list of states, of which one must be changed in order for the function to trigger
+        - Empty array means it only runs once
+      - Return value can be a "cleanup" function that is called even if the component is not rendered
+    - Hooks cannot be inside loop, conditional, or sub-function
+  - Routing
+    - Using `react-router-dom` version 6
+    - Surround entire app in `<BrowserRouter>`
+    - `<NavLink>` or `<Link>` to link to routes
+    - `<Routes>` for list of routes
+    - `<Route>` for a route
+  - Use `map` to create an array of React elements from an array of data
+  - Converting to React
+    - Copy db config
+    - Restructure directories
+    - Initialize Vite
+    - Install React and React Bootstrap
+    - Create App component
+    - Create view component stubs
+    - Create BrowserRouter
+    - Convert frontend code into view components
+      - Convert HTML-manipulating code to to JSX HTML
+      - Put main HTML into return statement
+      - Use `React.useEffect` for code to run after render, such as database fetches
+        - Second argument says which states it depends on for rerendering
+      - Build varying elements based on state variables, then change state variables to update the element
 - Vite (toolchain to build for React)
   - Builds application using Babel
   - Compresses JS to make it run faster, using Minify JS
