@@ -888,6 +888,80 @@ url("https://font-location");
   - `npm run build`: makes index.html
   - `npm run dev`: runs a debug server
 
+### Security
+
+- Attacks
+  - Injection
+    - Send data to server to be executed
+  - Cross-site Scripting (XSS)
+    - Data entered in one place, executed somewhere else (other frontend)
+  - Denial of Service
+    - Overwhelming server with too many requests, which exhausts resources
+  - Credential Stuffing
+    - Credentials obtained from one service used to attempt to log into other services
+  - Social Engineering
+    - Manipulative communication to gain private data
+- OWASP 10
+  - Open Worldwide Application Security Project
+  - Keeps track of current vulnerabilities
+  - Top 10
+    - Broken access control
+      - Users have unexpected access to resources
+      - Improper authentication checking
+      - Passing private information in URL
+    - Cryptrographic Failures
+      - Unencrypted data
+      - Encrypted only for transit, not in storage
+      - Weak cryptography
+      - Misused cryptography
+    - Injection
+      - User data not sanitized
+      - User data programmatically executed, e.g. SQL injection
+    - Insecure design
+      - Unrestricted use
+      - Not using best practices
+      - Sensitive data not segmented (subdivided into different locations)
+      - Single layer defense
+    - Security misconfiguration
+      - Insecure defaults
+      - Unnecessary features
+      - Dev info exposed
+      - System not hardened
+    - Vulnerable components
+      - Unecessary packages
+      - Untrusted sources
+      - Out of date components
+      - Package versions not locked
+      - Not tracking vulnerability bulletins
+    - ID and auth failures
+      - Credential stuffing
+      - Brute force attacks
+      - Allowing weak credentials
+      - Weak credential recovery
+      - Credentials in URL
+      - Not expiring auth tokens
+    - Software integrity failures
+      - Like vulnerable components but with software
+    - Logging failure
+      - Not logging critical requests
+      - Not monitoring system performance
+      - Logs not audited (automatic or manual)
+      - Logs not stored centrally
+    - Server side request forgery
+      - Allowing requests from server to any location
+- Other security issues
+  - Almost anything in a browser can be faked, except the domain
+- White Hat hackers
+  - Use attacks in a way that won't be harmful, to discover vulnerabilities
+  - Unit testing
+  - Integration testing
+  - Penetration testing
+  - Load testing
+  - Chaos testing
+- Practice
+  - Google Gruyere: web site
+  - OWASP Juice Shop: command line
+
 ## Startup
 
 - Access
