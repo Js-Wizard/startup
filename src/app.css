@@ -1,7 +1,15 @@
+body {
+    height: 100vh;
+}
+
+#root {
+    height: 100%;
+}
+
 .body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
     background-color: hsl(240, 100%, 15%) !important;
 }
 
@@ -79,6 +87,7 @@ section {
 
 footer {
     text-align: center;
+    background-color: hsl(240, 100%, 15%) !important;
 }
 
 form {

@@ -2,7 +2,6 @@ import React from 'react';
 
 import Button from 'react-bootstrap/Button';
 import {useNavigate, Link} from 'react-router-dom';
-import { AuthState } from '../login/authState';
 
 export function Home({ userName, onAuthChange }) {
     const navigate = useNavigate();
@@ -10,7 +9,7 @@ export function Home({ userName, onAuthChange }) {
     function logout()
     {
         localStorage.removeItem('user');
-        onAuthChange('', AuthState.Unauthenticated);
+        onAuthChange('');
 
         if (userName === '')
         {

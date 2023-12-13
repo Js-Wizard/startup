@@ -1,7 +1,6 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import { AuthState } from './authState';
 import { MessageDialog } from './messageDialog';
 import Button from 'react-bootstrap/Button';
 
@@ -22,7 +21,7 @@ export function Login({ onAuthChange }) {
     async function loginOrCreate(endpoint) {
         if (name === "")
         {
-            onAuthChange(name, AuthState.Authenticated);
+            onAuthChange(name);
             localStorage.setItem("user", name);
             navigate('/home');
             return;
@@ -39,7 +38,7 @@ export function Login({ onAuthChange }) {
         if (response.ok) {
             localStorage.setItem("user", name);
             localStorage.removeItem("guest-data");
-            onAuthChange(name, AuthState.Authenticated);
+            onAuthChange(name);
             navigate('/home');
         } else {
             const body = await response.json();
@@ -56,7 +55,7 @@ export function Login({ onAuthChange }) {
                 <form>
                     <input type="text" placeholder="username" value={name} onChange={(e) => setName(e.target.value)}/>
                     <input type="text" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    <div>
+                    <div className="form-row">
                         <Button variant="primary" onClick={loginUser}>Log In</Button>
                         <Button variant="secondary" onClick={createUser}>Sign Up</Button>
                     </div>

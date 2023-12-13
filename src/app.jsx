@@ -2,42 +2,31 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import { Login } from './login/login';
 import { Home } from './home/home';
 import { HowToPlay } from './how-to-play/how-to-play';
 import { ModeSelect } from './mode-select/mode-select';
 import { TwoPSetup } from './2p-setup/2p-setup';
 import { Play } from './play/play';
-import { AuthState } from './login/authState';
 
 export default function App()
 {
     const [userName, setUserName] = React.useState(localStorage.getItem('user') || '');
-    const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
-    const [authState, setAuthState] = React.useState(currentAuthState);
 
     return (
         <BrowserRouter>
             <div className='body bg-dark text-light'>
-                {authState === AuthState.Authenticated && (
-                    <header>
-                        <NavLink to='home'>
-                            <div className="logo"><img alt="fim logo" src="logo.png" /></div>
-                        </NavLink>
-                    </header>
-                )}
+                <Header />
 
                 <Routes>
                     <Route path='/' element={
-                        <Login onAuthChange={(userName, authState) => {
-                            setAuthState(authState);
+                        <Login onAuthChange={(userName) => {
                             setUserName(userName);
                         }}/>
                     } exact />
                     <Route path='/home' element={
-                        <Home userName={userName} onAuthChange={(userName, authState) => {
-                            setAuthState(authState);
+                        <Home userName={userName} onAuthChange={(userName) => {
                             setUserName(userName);
                         }}/>
                     } />
@@ -58,7 +47,22 @@ export default function App()
     );
 }
 
+function Header()
+{
+    const { pathname } = useLocation();
+
+    return (<>
+        {pathname !== '/' && (
+            <header>
+                <NavLink to='home'>
+                    <div className="logo"><img alt="fim logo" src="logo.png" /></div>
+                </NavLink>
+            </header>
+        )}
+    </>);
+}
+
 function NotFound()
 {
-    return <main className='container-fluid bg-secondary text-center'>404: Return to sender. Address unknown.</main>;
+    return <main className='container-fluid text-center'>404: Return to sender. Address unknown.</main>;
 }
