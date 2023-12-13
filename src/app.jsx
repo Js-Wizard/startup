@@ -9,36 +9,53 @@ import { HowToPlay } from './how-to-play/how-to-play';
 import { ModeSelect } from './mode-select/mode-select';
 import { TwoPSetup } from './2p-setup/2p-setup';
 import { Play } from './play/play';
+import { AuthState } from './login/authState';
 
 export default function App()
 {
-  return (
-    <BrowserRouter>
-        <div className='body bg-dark text-light'>
-            <header>
-                <NavLink to='home'>
-                    <div className="logo"><img alt="fim logo" src="logo.png" /></div>
-                </NavLink>
-            </header>
+    const [userName, setUserName] = React.useState(localStorage.getItem('user') || '');
+    const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+    const [authState, setAuthState] = React.useState(currentAuthState);
 
-            <Routes>
-                <Route path='/' element={<Login />} exact />
-                <Route path='/home' element={<Home />} />
-                <Route path='/how-to-play' element={<HowToPlay />} />
-                <Route path='/mode-select' element={<ModeSelect />} />
-                <Route path='/2p-setup' element={<TwoPSetup />} />
-                <Route path='/play' element={<Play />} />
-                <Route path='*' element={<NotFound />} />
-            </Routes>
+    return (
+        <BrowserRouter>
+            <div className='body bg-dark text-light'>
+                {authState === AuthState.Authenticated && (
+                    <header>
+                        <NavLink to='home'>
+                            <div className="logo"><img alt="fim logo" src="logo.png" /></div>
+                        </NavLink>
+                    </header>
+                )}
 
-            <footer>
-                <span className="author">
-                    &copy; Brent Thomson 2023 | <a href="https://github.com/Js-Wizard/startup">Source</a>
-                </span>
-            </footer>
-        </div>
-    </BrowserRouter>
-  );
+                <Routes>
+                    <Route path='/' element={
+                        <Login onAuthChange={(userName, authState) => {
+                            setAuthState(authState);
+                            setUserName(userName);
+                        }}/>
+                    } exact />
+                    <Route path='/home' element={
+                        <Home userName={userName} onAuthChange={(userName, authState) => {
+                            setAuthState(authState);
+                            setUserName(userName);
+                        }}/>
+                    } />
+                    <Route path='/how-to-play' element={<HowToPlay />} />
+                    <Route path='/mode-select' element={<ModeSelect />} />
+                    <Route path='/2p-setup' element={<TwoPSetup />} />
+                    <Route path='/play' element={<Play userName={userName}/>} />
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+
+                <footer>
+                    <span className="author">
+                        &copy; Brent Thomson 2023 | <a href="https://github.com/Js-Wizard/startup">Source</a>
+                    </span>
+                </footer>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 function NotFound()
