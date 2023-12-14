@@ -195,10 +195,6 @@ h2 {
     color: cyan;
 }
 
-.game-end-options {
-    display: none;
-}
-
 #num-wins {
     font-weight: bold;
     color: green;
