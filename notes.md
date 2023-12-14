@@ -888,6 +888,8 @@ url("https://font-location");
   - `npm run build`: makes index.html
   - `npm run dev`: runs a debug server
 
+## Other topics
+
 ### Security
 
 - Attacks
@@ -961,6 +963,40 @@ url("https://font-location");
 - Practice
   - Google Gruyere: web site
   - OWASP Juice Shop: command line
+
+### SEO
+
+- Search Engine Optimization
+- Factors
+  - Site content
+  - Links to and from other sites
+  - Metadata
+  - Sitemap
+  - Robots.txt
+    - Go as many places as will be harmless
+  - Performance
+- Tools to test it
+  - Can simulate location, throttling
+
+### Useful things
+
+- Nolan Larson DIY JS framework tutorial
+- UX
+  - Design should be intuitive
+  - Recommended to take a class
+- TypeScript
+  - JavaScript modification
+  - Includes types
+- Performance monitoring
+  - Performance has huge impact on success
+- Device APIs
+- Progressive web applications
+  - Separation from browser
+  - Runs the same on all devices
+- Web Assembly
+  - Provides executable instructions for browsers
+  - Sandboxed, so it's safe
+  - Write code in common languages that can be run by browsers
 
 ## Startup
 
