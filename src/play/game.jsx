@@ -28,7 +28,7 @@ export function Game({ userName, onWin, onLose, onBroadcast })
     React.useEffect(() => {
         if (window.Worker)
         {
-            const newWorker = new Worker("/src/play/cpu.js");
+            const newWorker = new Worker("cpu.js");
             newWorker.onmessage = (e) => {
                 setTimeout(() => { setPendingMove(e.data); }, 1000);
             }
