@@ -110,5 +110,14 @@ For this deliverable, I added a WebSocket to both the client and server and comp
 - **Data sent over WebSocket connection** - When the client finishes a game, it sends a message to the server, and then the server sends the data to all connected clients. Note: only non-guest users will send data with their connection, but all users receive data.
 - **WebSocket data displayed in the application interface** - When a cilent receives a message, it adds a new message to the Live Results interface.
 
+## React deliverable
+
+For this deliverable, I applied the React framework across the entire application, using Vite for bundling.
+
+- **Bundled using Vite** - Done
+- **Multiple functional React components** - Most pages have their own React component, in addition to the App component, and the play page was split into a Play component and a Game component.
+- **React router** - Used in the App component, with `Link`s in other components.
+- **React hooks** - `useState` used for states and `useEffect` used for initialization and reactive events.
+
 # Notes for exams
 [Notes](notes.md)
