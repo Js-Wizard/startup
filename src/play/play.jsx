@@ -12,6 +12,7 @@ export function Play({ userName }) {
     const [losses, setLosses] = React.useState(0);
     const [socket, setSocket] = React.useState(null);
     const [messages, setMessages] = React.useState([]);
+    const [pendingMessage, setPendingMessage] = React.useState(null);
 
     const displayName = userName ? userName : "Guest";
 
@@ -33,6 +34,14 @@ export function Play({ userName }) {
             localStorage.setItem("guest-data", JSON.stringify({ wins: wins, losses: losses }));
         }
     }, [wins, losses]);
+
+    React.useEffect(() => {
+        if (pendingMessage)
+        {
+            setMessages([pendingMessage, ...messages]);
+            setPendingMessage(null);
+        }
+    }, [pendingMessage]);
 
     async function initializeUser()
     {
@@ -70,20 +79,25 @@ export function Play({ userName }) {
 
     function configureWebSocket() {
         const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
-        setSocket(new WebSocket(`${protocol}://${window.location.host}/ws`));
+        const newSocket = new WebSocket(`${protocol}://${window.location.host}/ws`);
 
-        socket.onmessage = async (event) => {
-            const msg = JSON.parse(await event.data.text());
-            if (msg.type === WinEvent) {
-                displayMsg(msg.from, `won in ${msg.value} turns!`);
-            } else if (msg.type === LossEvent) {
-                displayMsg(msg.from, `lost...`);
-            }
-        };
+        newSocket.onmessage = eventHandler;
+
+        setSocket(newSocket);
+    }
+
+    async function eventHandler(event)
+    {
+        const msg = JSON.parse(await event.data.text());
+        if (msg.type === WinEvent) {
+            displayMsg(msg.from, `won in ${msg.value} turns!`);
+        } else if (msg.type === LossEvent) {
+            displayMsg(msg.from, `lost...`);
+        }
     }
 
     function displayMsg(from, msg) {
-        setMessages([from, msg], ...messages);
+        setPendingMessage({from: from, msg: msg});
     }
 
     function broadcastEvent(from, type, value) {
@@ -146,9 +160,9 @@ export function Play({ userName }) {
 
 
 
-    const log = messages.map((message) => {
+    const log = messages.map((message, num) => {
         return (
-            <li>
+            <li key={num}>
                 <span className="player-name">{message.from}</span> {message.msg}
             </li>
         );
@@ -162,7 +176,7 @@ export function Play({ userName }) {
                 <div>Losses: <span id="num-losses">{losses}</span></div>
             </div>
 
-            <Game onWin={win} onLose={lose} onBroadcast={broadcastEvent} />
+            <Game userName={userName} onWin={win} onLose={lose} onBroadcast={broadcastEvent} />
             
             <div className="results-box">
                 <h2>Live Results</h2>
